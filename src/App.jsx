@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Sidebar from "./components/SideBar";
+import MainComponent from "./components/MainComponent";
 
 
 export default function App() {
@@ -7,6 +8,7 @@ export default function App() {
 		<>
 		<Header/>
 		<Sidebar/>
+		<MainComponent/>
 		</>
 	);
 }
