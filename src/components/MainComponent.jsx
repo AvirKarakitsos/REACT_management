@@ -11,6 +11,7 @@ export default function MainContent() {
         p: 3,
         ml: '240px', // largeur du Drawer
         mt: '64px', // hauteur du Header
+        backgroundColor: 'backgound.default'
       }}
     >
       <Toolbar /> {/* Permet de pousser le contenu sous l’AppBar si besoin */}
@@ -21,15 +22,15 @@ export default function MainContent() {
           height: '200px',
           display:'flex',
           justifyContent: 'space-evenly',
-		  alignItems:'center',
-          backgroundColor: '#f3f3f3',
+		      alignItems:'center',
+          backgroundColor: 'background.paper',
           borderRadius: 2,
           mb: 3
         }}
       >
         <MiniCard title="Items en stock" number='3'/>
         <MiniCard title="Items en ligne" number='15'/>
-        <MiniCard title="Gain Total" number='230€'/>
+        <MiniCard title="Gain Total" number='230 €'/>
       </Box>
 
       {/* Partie Milieu */}

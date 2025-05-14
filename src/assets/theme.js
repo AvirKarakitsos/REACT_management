@@ -1,0 +1,27 @@
+// src/theme.js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1e90ff',
+    },
+    secondary: {
+      main: '#EBEDEE',
+    },
+    background: {
+      default: '#fff',
+      paper: '#F7F7F7',
+    },
+    text: {
+      primary: '#000',
+      secondary: '#8D8D8D',
+      third: '#cccccc'
+    },
+    custom: {
+      grey: '#EBEDEE',
+    },
+  },
+});
+
+export default theme;

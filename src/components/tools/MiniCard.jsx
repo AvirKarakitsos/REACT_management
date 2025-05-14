@@ -17,7 +17,7 @@ export default function MiniCard({ title, number }) {
 			<Box
 				sx={{
 					p:'10px',
-					backgroundColor: '#EBEDEE',
+					backgroundColor: 'secondary.main',
 					borderRadius: '50%',
 					display: 'flex',
 					alignItems: 'center',
