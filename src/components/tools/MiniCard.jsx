@@ -1,8 +1,6 @@
-import { Box, Typography, Stack, Paper } from '@mui/material';
-import CercleContainer from './CercleContainer'
-import Inventory2Icon from '@mui/icons-material/Inventory2';
+import { Box, Typography, Paper } from '@mui/material';
 
-export default function MiniCard({ title, number }) {
+export default function MiniCard({ title, number, children }) {
 	return (
 		<Paper
 			elevation={2}
@@ -15,9 +13,8 @@ export default function MiniCard({ title, number }) {
 				columnGap: 2
 			}}
 		>
-			<CercleContainer>
-				<Inventory2Icon fontSize="small" />
-			</CercleContainer>
+
+			{ children }
 
 			<Box sx={{ display:'flex', flexDirection:'column'}}>
 				<Typography variant="caption" noWrap color="text.secondary" fontSize={14} >
@@ -27,6 +24,7 @@ export default function MiniCard({ title, number }) {
 				{number}
 				</Typography>
 			</Box>
+			
 		</Paper>
 	);
 }

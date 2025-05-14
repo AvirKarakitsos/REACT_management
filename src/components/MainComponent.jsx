@@ -1,6 +1,11 @@
 import { Box, Typography, Toolbar } from '@mui/material';
 import MiniCard from './tools/MiniCard';
 import Grid from './tools/Grid';
+import CercleContainer from './tools/CercleContainer'
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+import LaptopIcon from '@mui/icons-material/Laptop';
+import EuroIcon from '@mui/icons-material/Euro';
+
 
 export default function MainContent() {
   return (
@@ -27,9 +32,22 @@ export default function MainContent() {
           mb: 3
         }}
       >
-        <MiniCard title="Items en stock" number='3'/>
-        <MiniCard title="Items en ligne" number='15'/>
-        <MiniCard title="Gain Total" number='230 €'/>
+        <MiniCard title="Items en stock" number='3'>
+			<CercleContainer>
+				<Inventory2Icon fontSize="small" />
+			</CercleContainer>
+		</MiniCard>
+		<MiniCard title="Items en ligne" number='5'>
+			<CercleContainer>
+				<LaptopIcon fontSize="small" />
+			</CercleContainer>
+		</MiniCard>
+		<MiniCard title="Gain Total" number='253 €'>
+			<CercleContainer>
+				<EuroIcon fontSize="small" />
+			</CercleContainer>
+		</MiniCard>
+
       </Box>
 
       {/* Partie Milieu */}
