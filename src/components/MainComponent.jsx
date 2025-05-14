@@ -1,5 +1,6 @@
 import { Box, Typography, Toolbar } from '@mui/material';
 import MiniCard from './MiniCard';
+import Grid from './tools/Grid';
 
 export default function MainContent() {
   return (
@@ -48,18 +49,18 @@ export default function MainContent() {
       </Box>
 
       {/* Partie Bas */}
-      <Box
-        sx={{
-          minHeight: '200px',
-          backgroundColor: '#fce4ec',
-          borderRadius: 2,
-          p: 2,
-        }}
-      >
+		<Box
+			sx={{
+			minHeight: '200px',
+			backgroundColor: '#fce4ec',
+			borderRadius: 2,
+			p: 2,
+			}}
+		>
         <Typography variant="h6" gutterBottom>
-          Bilan du mois en cours
+			Les dernières ventes
         </Typography>
-        {/* Contenu à ajouter ici */}
+		<Grid/>
       </Box>
     </Box>
   );
