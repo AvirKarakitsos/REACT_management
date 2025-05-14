@@ -17,8 +17,8 @@ const menuData = [
 ];
 
 function Sidebar() {
-
 	const [selected, setSelected] = useState('Général')
+
 
 	return (
 		<Drawer
@@ -38,29 +38,31 @@ function Sidebar() {
 				<Typography sx={ {marginBottom: '30px', fontWeight:'600'}}>Outil de Gestion</Typography>
 				
 				{menuData.map((section, idx) => (
-				<Box key={idx} sx={{ paddingBottom:'40px', cursor: 'default' }}>
-					<Typography sx={ {fontSize:'16px', marginBottom:1, color: 'text.third'} }>
-					{section.title}
-					</Typography>
-					<List disablePadding sx={{px:'10px'}}>
-					{section.items.map((text, i) => (
-						<ListItem key={i}
-						onClick={() => setSelected(text)}  
-						sx={{
-							borderRadius:'15px',
-							color: selected === text ? 'text.primary' : 'text.secondary',
-							backgroundColor: selected === text ? 'secondary.main' : 'background.paper',
-							'&:hover': {
-								color: '#000', 
-								backgroundColor: 'secondary.main',
-							},
-						}}>
-							<ListItemText primary={text} sx={{ cursor: 'default'}}/>
-						</ListItem>
+					<Box key={idx} sx={{ paddingBottom:'40px', cursor: 'default' }}>
+
+						<Typography sx={ {fontSize:'16px', marginBottom:1, color: 'text.third'} }>
+							{section.title}
+						</Typography>
+						<List disablePadding sx={{px:'10px'}}>
+							{section.items.map((text, i) => (
+								<ListItem key={i}
+									onClick={() => !idx && setSelected(text)}  
+									sx={{
+										borderRadius:'15px',
+										color: selected === text ? 'text.primary' : 'text.secondary',
+										backgroundColor: selected === text ? 'secondary.main' : 'background.paper',
+										'&:hover': {
+											color: '#000', 
+											backgroundColor: 'secondary.main',
+										},
+									}}>
+									<ListItemText primary={text} sx={{ cursor: 'default'}}/>
+								</ListItem>
+							))}
+						</List>
+
+					</Box>
 					))}
-					</List>
-				</Box>
-				))}
 				
 			</Box>
 		</Drawer>
