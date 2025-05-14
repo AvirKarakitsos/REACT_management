@@ -1,5 +1,5 @@
 import { Box, Typography, Toolbar } from '@mui/material';
-import MiniCard from './MiniCard';
+import MiniCard from './tools/MiniCard';
 import Grid from './tools/Grid';
 
 export default function MainContent() {
