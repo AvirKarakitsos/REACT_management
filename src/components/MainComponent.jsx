@@ -27,9 +27,9 @@ export default function MainContent() {
           mb: 3
         }}
       >
-        <MiniCard/>
-        <MiniCard/>
-        <MiniCard/>
+        <MiniCard title="Items en stock" number='3'/>
+        <MiniCard title="Items en ligne" number='15'/>
+        <MiniCard title="Gain Total" number='230€'/>
       </Box>
 
       {/* Partie Milieu */}

@@ -1,7 +1,7 @@
 import { Box, Typography, Stack, Paper } from '@mui/material';
 import Inventory2Icon from '@mui/icons-material/Inventory2'; // Icône boîte
 
-export default function MiniCard({ text = 'Voici une phrase', number = '150' }) {
+export default function MiniCard({ title, number }) {
 	return (
 		<Paper
 			elevation={2}
@@ -29,7 +29,7 @@ export default function MiniCard({ text = 'Voici une phrase', number = '150' }) 
 
 			<Box sx={{ display:'flex', flexDirection:'column'}}>
 				<Typography variant="caption" noWrap color="text.secondary" fontSize={14} >
-				{text}
+				{title}
 				</Typography>
 				<Typography variant="caption" noWrap fontSize={20} fontWeight={'600'}>
 				{number}
