@@ -1,5 +1,6 @@
 import { Box, Typography, Stack, Paper } from '@mui/material';
-import Inventory2Icon from '@mui/icons-material/Inventory2'; // Icône boîte
+import CercleContainer from './CercleContainer'
+import Inventory2Icon from '@mui/icons-material/Inventory2';
 
 export default function MiniCard({ title, number }) {
 	return (
@@ -14,18 +15,9 @@ export default function MiniCard({ title, number }) {
 				columnGap: 2
 			}}
 		>
-			<Box
-				sx={{
-					p:'10px',
-					backgroundColor: 'secondary.main',
-					borderRadius: '50%',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-				>
-					<Inventory2Icon fontSize="small" />
-			</Box>
+			<CercleContainer>
+				<Inventory2Icon fontSize="small" />
+			</CercleContainer>
 
 			<Box sx={{ display:'flex', flexDirection:'column'}}>
 				<Typography variant="caption" noWrap color="text.secondary" fontSize={14} >

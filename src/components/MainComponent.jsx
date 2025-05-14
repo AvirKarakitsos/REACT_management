@@ -23,8 +23,7 @@ export default function MainContent() {
           display:'flex',
           justifyContent: 'space-evenly',
 		      alignItems:'center',
-          backgroundColor: 'background.paper',
-          borderRadius: 2,
+          border: '1px solid black',
           mb: 3
         }}
       >
