@@ -5,6 +5,7 @@ import CercleContainer from './tools/CercleContainer'
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import EuroIcon from '@mui/icons-material/Euro';
+import { BarChart } from '@mui/x-charts/BarChart';
 
 
 export default function MainContent() {
@@ -27,8 +28,8 @@ export default function MainContent() {
 			height: '200px',
 			display:'flex',
 			justifyContent: 'space-evenly',
-				alignItems:'center',
-			border: '1px solid black',
+			alignItems:'center',
+			// border: '1px solid black',
 			mb: 3
 			}}
 		>
@@ -54,10 +55,10 @@ export default function MainContent() {
 		<Box
 			sx={{
 			height: '400px',
-			backgroundColor: '#e0f7fa',
+			// backgroundColor: '#e0f7fa',
 			borderRadius: 2,
 			mb: 3,
-			p: 2,
+			padding: 2,
 			}}
 		>
 			<Typography variant="h2">
@@ -65,10 +66,38 @@ export default function MainContent() {
 			</Typography>
 
 			<Box sx={ {display: 'flex'} }>
-				<Typography sx={ {fontSize: '50px', } }>
+				<Typography sx={ {width: '45%', fontSize: '50px', } }>
 					35 €
 				</Typography>
-				{/* Graph */}
+
+				<BarChart
+					height={300}
+					borderRadius={8}
+					xAxis={[
+						{
+						scaleType: 'band',
+						data: ['Mois en cours'],
+						barGapRatio: 0.8,
+						},
+					]}
+					series={[
+						{
+						data: [2],
+						color: '#62fd89',
+						label: 'Rakuten'
+						},
+						{
+						data: [5],
+						color: '#fd6262',
+						label: 'Leboncoin'
+						},
+						{
+						data: [3],
+						color: '#fdb462',
+						label: 'Vinted'
+						},
+					]}
+				/>
 			</Box>
 
 		</Box>
@@ -77,7 +106,7 @@ export default function MainContent() {
 			<Box
 				sx={{
 				minHeight: '200px',
-				backgroundColor: '#fce4ec',
+				// backgroundColor: '#fce4ec',
 				borderRadius: 2,
 				p: 2,
 				}}
