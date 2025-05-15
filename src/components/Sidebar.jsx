@@ -1,18 +1,69 @@
 import { Drawer, List, ListItem, ListItemText, Typography, Divider, Box } from '@mui/material';
 import { useState } from 'react';
+import GridViewIcon from '@mui/icons-material/GridView';
+import StoreIcon from '@mui/icons-material/Store';
+import ComputerIcon from '@mui/icons-material/Computer';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 const menuData = [
   {
+	id: 1,
     title: 'Tableau de bord',
-    items: ['Général', 'Stock', 'En Ligne', 'Analytique']
+    items: [{
+			id: 1 ,
+			title: 'Général',
+			icone: <GridViewIcon fontSize='small'/>
+		},
+		{ 
+			id: 2,
+			title:'Stock',
+			icone: <StoreIcon fontSize='small'/>
+		},
+		{ 
+			id:3,
+			title: 'En Ligne',
+			icone: <ComputerIcon fontSize='small'/>
+		},
+		{ 
+			id: 4,
+			title: 'Analytique',
+			icone: <BarChartIcon fontSize='small'/>
+	}]
   },
   {
+	id: 2,
     title: 'Ressources',
-    items: ['Le Bazar d\'Avir','Mondial Relay']
+    items: [{
+			id: 1 ,
+			title: 'Mondil Relay',
+			icone: null
+		},
+		{ 
+			id: 2,
+			title:'Le Bazar d\'Avir',
+			icone: null
+		}]
   },
   {
+	id: 3,
     title: 'Plateformes',
-    items: ['Vinted','Rakuten', 'Leboncoin', 'Ebay']
+    items: [{
+			id: 1 ,
+			title: 'Vinted',
+			icone: null		},
+		{ 
+			id: 2,
+			title:'Rakuten',
+			icone: null		},
+		{ 
+			id:3,
+			title: 'Leboncoin',
+			icone: null		},
+		{ 
+			id: 4,
+			title: 'Ebay',
+			icone: null
+	}]
   }
 ];
 
@@ -30,6 +81,7 @@ function Sidebar() {
 			width: 250, // largeur appliquée à l'élément visible
 			padding: '20px',
 			backgroundColor: 'background.paper',
+			border: 'none',
 			overflow: 'hidden'
 			},
 		}}
@@ -37,26 +89,30 @@ function Sidebar() {
 			<Box>
 				<Typography sx={ {marginBottom: '30px', fontWeight:'600'}}>Outil de Gestion</Typography>
 				
-				{menuData.map((section, idx) => (
-					<Box key={idx} sx={{ paddingBottom:'40px', cursor: 'default' }}>
+				{menuData.map((section) => (
+					<Box key={section.id} sx={{ paddingBottom:'40px', cursor: 'default' }}>
 
 						<Typography sx={ {fontSize:'16px', marginBottom:1, color: 'text.third'} }>
 							{section.title}
 						</Typography>
 						<List disablePadding sx={{px:'10px'}}>
-							{section.items.map((text, i) => (
-								<ListItem key={i}
-									onClick={() => !idx && setSelected(text)}  
+							{section.items.map((content) => (
+								<ListItem key={content.id}
+									onClick={() => !section.id && setSelected(content.title)}  
 									sx={{
+										display: 'flex',
+										alignItems: 'center',
+										columnGap: 1,
 										borderRadius:'15px',
-										color: selected === text ? 'text.primary' : 'text.secondary',
-										backgroundColor: selected === text ? 'secondary.main' : 'background.paper',
+										color: selected === content.title ? 'text.primary' : 'text.secondary',
+										backgroundColor: selected === content.title ? 'secondary.main' : 'background.paper',
 										'&:hover': {
 											color: '#000', 
 											backgroundColor: 'secondary.main',
 										},
 									}}>
-									<ListItemText primary={text} sx={{ cursor: 'default'}}/>
+									{content.icone}
+									<ListItemText primary={content.title} sx={{ cursor: 'default'}}/>
 								</ListItem>
 							))}
 						</List>

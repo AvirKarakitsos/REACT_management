@@ -11,34 +11,37 @@ import { BarChart } from '@mui/x-charts/BarChart';
 export default function MainContent() {
 	return (
 		<Box
-		component="main"
-		sx={{
-			flexGrow: 1,
-			p: 6,
-			ml: '240px', // largeur du Drawer
-			mt: '64px', // hauteur du Header
-			backgroundColor: 'backgound.default'
-		}}
+			component="main"
+			sx={{
+				flexGrow: 1,
+				p: 4,
+				ml: '240px', // largeur du Drawer
+				mt: '64px', // hauteur du Header
+				backgroundColor: 'backgound.default'
+			}}
 		>
-		<Toolbar /> {/* Permet de pousser le contenu sous l’AppBar si besoin */}
+		
+		{/* Permet de pousser le contenu sous l’AppBar si besoin */}
+		{/* <Toolbar />  */}
 
 		{/* Partie Haut */}
 		<Box
 			sx={{
-			height: '200px',
+			// height: '200px',
 			display:'flex',
 			justifyContent: 'space-evenly',
 			alignItems:'center',
 			// border: '1px solid black',
-			mb: 3
+			mb: 3,
+			p: 4
 			}}
 		>
-			<MiniCard title="Items en stock" number='3'>
+			<MiniCard title="Produits en stock" number='3'>
 				<CercleContainer>
 					<Inventory2Icon fontSize="small" />
 				</CercleContainer>
 			</MiniCard>
-			<MiniCard title="Items en ligne" number='5'>
+			<MiniCard title="Produits en ligne" number='5'>
 				<CercleContainer>
 					<LaptopIcon fontSize="small" />
 				</CercleContainer>
