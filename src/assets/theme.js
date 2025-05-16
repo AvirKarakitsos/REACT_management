@@ -30,6 +30,15 @@ const theme = createTheme({
 		marginBottom: 40,
 		},
 	},
+
+	customComponents: {
+		section: {
+		p: 4,
+		m: 4,
+		borderRadius: 2,
+		backgroundColor: '#fff',
+    	},
+	}
 });
 
 export default theme;

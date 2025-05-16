@@ -1,4 +1,4 @@
-import { Drawer, List, ListItem, ListItemText, Typography, Divider, Box } from '@mui/material';
+import { Drawer, List, ListItem, ListItemText, Typography, Box } from '@mui/material';
 import { useState } from 'react';
 import GridViewIcon from '@mui/icons-material/GridView';
 import StoreIcon from '@mui/icons-material/Store';
@@ -80,7 +80,7 @@ function Sidebar() {
 			'& .MuiDrawer-paper': {
 			width: 250, // largeur appliquée à l'élément visible
 			padding: '20px',
-			backgroundColor: 'background.paper',
+			backgroundColor: 'background.default',
 			border: 'none',
 			overflow: 'hidden'
 			},
@@ -105,7 +105,7 @@ function Sidebar() {
 										columnGap: 1,
 										borderRadius:'15px',
 										color: selected === content.title ? 'text.primary' : 'text.secondary',
-										backgroundColor: selected === content.title ? 'secondary.main' : 'background.paper',
+										backgroundColor: selected === content.title ? 'secondary.main' : 'background.default',
 										'&:hover': {
 											color: '#000', 
 											backgroundColor: 'secondary.main',
