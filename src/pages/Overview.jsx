@@ -1,14 +1,16 @@
-import { Box, Typography } from '@mui/material';
-import MiniCard from './tools/MiniCard';
-import Grid from './tools/Grid';
-import CercleContainer from './tools/CercleContainer'
+import MiniCard from '../components/tools/MiniCard';
+import Grid from '../components/tools/Grid';
+import CercleContainer from '../components/tools/CercleContainer'
+
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import EuroIcon from '@mui/icons-material/Euro';
+
 import { BarChart } from '@mui/x-charts/BarChart';
+import { Box, Typography } from '@mui/material';
 
 
-export default function MainContent() {
+export default function Overview() {
 	return (
 		<Box
 			component="main"
