@@ -113,8 +113,8 @@ function Sidebar() {
 						</Typography>
 						<List disablePadding sx={{px:'10px'}}>
 							{section.items.map((content) => (
-								<MuiLink component={RouterLink} to={content.link} underline='none' color='text.secondary' target={section.id !== 1 ? "_blank" : null} rel= {section.id !== 1 ? "noopener noreferrer" : null}>
-									<ListItem key={content.id}
+								<MuiLink key={content.id} component={RouterLink} to={content.link} underline='none' color='text.secondary' target={section.id !== 1 ? "_blank" : null} rel= {section.id !== 1 ? "noopener noreferrer" : null}>
+									<ListItem
 										onClick={() => !section.id && setSelected(content.title)}  
 										sx={{
 											display: 'flex',
