@@ -41,7 +41,7 @@ const FormulaireProduit = () => {
       {/* Prix */}
       <TextField
         label="Prix (€)"
-        name="prix"
+        name="price"
         type="number"
         fullWidth
       />
@@ -49,8 +49,9 @@ const FormulaireProduit = () => {
       {/* Options */}
       <TextField
         select
+        value=""
         label="Catégorie"
-        name="option"
+        name="category"
         fullWidth
       >
         <MenuItem value="choix1">Livre</MenuItem>

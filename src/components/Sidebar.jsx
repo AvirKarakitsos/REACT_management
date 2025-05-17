@@ -41,7 +41,7 @@ const menuData = [
 	id: 2,
     title: 'Ressources',
     items: [{
-			id: 1 ,
+			id: 1,
 			title: 'Mondil Relay',
 			link: "/stock",
 			icone: null
@@ -57,7 +57,7 @@ const menuData = [
 	id: 3,
     title: 'Plateformes',
     items: [{
-			id: 1 ,
+			id: 1,
 			title: 'Vinted',
 			link: "https://www.youtube.com/",
 			icone: null		
@@ -69,7 +69,7 @@ const menuData = [
 			icone: null		
 		},
 		{ 
-			id:3,
+			id: 3,
 			title: 'Leboncoin',
 			link: "/stock",
 			icone: null		
@@ -85,7 +85,6 @@ const menuData = [
 
 function Sidebar() {
 	const [selected, setSelected] = useState('Général')
-
 
 	return (
 		<Drawer
@@ -114,22 +113,23 @@ function Sidebar() {
 						<List disablePadding sx={{px:'10px'}}>
 							{section.items.map((content) => (
 								<MuiLink key={content.id} component={RouterLink} to={content.link} underline='none' color='text.secondary' target={section.id !== 1 ? "_blank" : null} rel= {section.id !== 1 ? "noopener noreferrer" : null}>
-									<ListItem
-										onClick={() => !section.id && setSelected(content.title)}  
-										sx={{
-											display: 'flex',
-											alignItems: 'center',
-											columnGap: 1,
-											borderRadius:'15px',
-											color: selected === content.title ? 'text.primary' : 'text.secondary',
-											backgroundColor: selected === content.title ? 'secondary.main' : 'background.default',
-											'&:hover': {
-												color: '#000', 
-												backgroundColor: 'secondary.main',
-											},
-										}}>
+									<ListItem 
+											onClick={() => section.id === 1 && setSelected(content.title)}  
+											sx={{
+												display: 'flex',
+												alignItems: 'center',
+												columnGap: 1,
+												borderRadius:'15px',
+												color: selected === content.title ? 'text.primary' : 'text.secondary',
+												backgroundColor: selected === content.title ? 'secondary.main' : 'background.default',
+												'&:hover': {
+													color: '#000', 
+													backgroundColor: 'secondary.main',
+												},
+											}}	
+										>
 										{content.icone}
-											<ListItemText primary={content.title} sx={{ cursor: 'default'}}/>
+										<ListItemText primary={content.title} sx={{ cursor: 'default'}}/>
 									</ListItem>
 								</MuiLink>
 							))}
