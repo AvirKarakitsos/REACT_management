@@ -3,7 +3,6 @@ import {
   TextField,
   MenuItem,
   Button,
-  Typography,
 } from '@mui/material';
 
 const FormulaireProduit = ( {children} ) => {
@@ -13,9 +12,7 @@ const FormulaireProduit = ( {children} ) => {
       component="form"
       sx={{
         display: 'flex',
-        flexDirection: 'column',
         gap: 2,
-        maxWidth: 500,
         p: 3,
         border: '1px solid #ccc',
         borderRadius: 2,
@@ -23,48 +20,53 @@ const FormulaireProduit = ( {children} ) => {
       }}
     >
 
-      <TextField
-        label="Titre"
-        name="titre"
-        fullWidth
-      />
+		<Box sx={ {width: '50%', p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 
-      {/* Description */}
-      <TextField
-        label="Description"
-        name="description"
-        multiline
-        rows={4}
-        fullWidth
-      />
+			<TextField
+				label="Titre"
+				name="titre"
+				fullWidth
+			/>
 
-      {/* Prix */}
-      <TextField
-        label="Prix (€)"
-        name="price"
-        type="number"
-        fullWidth
-      />
+			{/* Description */}
+			<TextField
+				label="Description"
+				name="description"
+				multiline
+				rows={4}
+				fullWidth
+			/>
 
-      {/* Options */}
-      <TextField
-        select
-        value=""
-        label="Catégorie"
-        name="category"
-        fullWidth
-      >
-        <MenuItem value="choix1">Livre</MenuItem>
-        <MenuItem value="choix2">Vêtement</MenuItem>
-        <MenuItem value="choix3">Autre</MenuItem>
-      </TextField>
+			{/* Prix */}
+			<TextField
+				label="Prix (€)"
+				name="price"
+				type="number"
+				fullWidth
+			/>
 
-      <Button type="submit" variant="contained">
-        Enregistrer
-      </Button>
+			{/* Options */}
+			<TextField
+				select
+				value=""
+				label="Catégorie"
+				name="category"
+				fullWidth
+			>
+				<MenuItem value="choix1">Livre</MenuItem>
+				<MenuItem value="choix2">Vêtement</MenuItem>
+				<MenuItem value="choix3">Autre</MenuItem>
+			</TextField>
 
-      {children}
-    </Box>
+			<Button type="submit" variant="contained">
+				Enregistrer
+			</Button>
+		</Box>
+
+		<Box sx={ {width: '50%',p: 2, display: 'flex', flexDirection: 'column', gap: 2} }>
+			{children}
+		</Box>
+	</Box>
   );
 };
 
