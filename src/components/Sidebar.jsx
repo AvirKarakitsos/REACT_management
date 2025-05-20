@@ -129,7 +129,7 @@ function Sidebar() {
 											}}	
 										>
 										{content.icone}
-										<ListItemText primary={content.title} sx={{ cursor: 'default'}}/>
+										<ListItemText primary={content.title} sx={{ cursor: 'pointer'}}/>
 									</ListItem>
 								</MuiLink>
 							))}

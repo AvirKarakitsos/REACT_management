@@ -1,7 +1,9 @@
 import { Box, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Typography } from '@mui/material';
 import Form from '../components/tools/Form'
 import CollapseComponent from '../components/tools/Collapse'
+import Grid from '../components/tools/Grid'
 import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { data } from '../utilities/common.js'
 
 export default function Online() {
     return (
@@ -57,6 +59,13 @@ export default function Online() {
 
                 </Form>
 			</CollapseComponent>
+
+            <Box elevation={1} sx={(theme) => theme.customComponents.section}>
+                <Typography variant="h2">
+                    Les produits en ligne
+                </Typography>
+                <Grid columns={data.columns} rows={data.rows}/>
+            </Box>
 
         </Box>
     );

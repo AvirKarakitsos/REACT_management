@@ -26,7 +26,7 @@ export default function Stock() {
 
 			<Box elevation={1} sx={(theme) => theme.customComponents.section}>
 				<Typography variant="h2">
-					Les produits en stocks
+					Les produits en stock
 				</Typography>
 				<Grid columns={data.columns} rows={data.rows}/>
 			</Box>
