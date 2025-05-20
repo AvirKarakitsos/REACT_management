@@ -1,6 +1,7 @@
 import MiniCard from '../components/tools/MiniCard';
 import Grid from '../components/tools/Grid';
 import CercleContainer from '../components/tools/CercleContainer'
+import {data} from '../utilities/common.js'
 
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';
@@ -98,11 +99,11 @@ export default function Overview() {
 			</Box>
 
 			{/* Partie Bas */}
-				<Box elevation={1} sx={(theme) => theme.customComponents.section}>
+			<Box elevation={1} sx={(theme) => theme.customComponents.section}>
 				<Typography variant="h2">
 					Les dernières ventes
 				</Typography>
-				<Grid/>
+				<Grid columns={data.columns} rows={data.rows}/>
 			</Box>
 		</Box>
 	);
