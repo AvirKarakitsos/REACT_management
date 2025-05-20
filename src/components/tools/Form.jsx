@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 
-const FormulaireProduit = () => {
+const FormulaireProduit = ( {children} ) => {
   
   return (
     <Box
@@ -62,6 +62,8 @@ const FormulaireProduit = () => {
       <Button type="submit" variant="contained">
         Enregistrer
       </Button>
+
+      {children}
     </Box>
   );
 };
