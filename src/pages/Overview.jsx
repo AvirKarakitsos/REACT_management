@@ -8,7 +8,7 @@ import LaptopIcon from '@mui/icons-material/Laptop';
 import EuroIcon from '@mui/icons-material/Euro';
 
 import { BarChart } from '@mui/x-charts/BarChart';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
 
 
 export default function Overview() {
@@ -24,10 +24,6 @@ export default function Overview() {
 			}}
 		>
 		
-		{/* Permet de pousser le contenu sous l’AppBar si besoin */}
-			{/* <Toolbar />  */}
-
-			{/* Partie Haut */}
 			<Box
 				sx={{
 				display:'flex',
@@ -55,17 +51,27 @@ export default function Overview() {
 
 			</Box>
 
-			{/* Partie Milieu */}
-			<Box elevation={1} sx={(theme) => theme.customComponents.section}>
-				<Typography variant="h2">
-					Les ventes du mois
-				</Typography>
+			
+			<Box sx={{display: 'flex',}}>
 
-				<Box sx={ {display: 'flex'} }>
+				<Paper elevation={2}  sx={(theme) => ({
+						...theme.customComponents.section,
+						height: '200px',
+						width: '40%',
+					})}>
+					
+					<Typography variant="h2">
+						Les ventes du mois
+					</Typography>
 					<Typography sx={ {width: '45%', fontSize: '50px', } }>
 						35 €
 					</Typography>
+				</Paper>
 
+				<Paper elevation={2} sx={(theme) => ({
+						...theme.customComponents.section,
+						width: '50%',
+					})}>
 					<BarChart
 						height={300}
 						borderRadius={8}
@@ -94,11 +100,11 @@ export default function Overview() {
 							},
 						]}
 					/>
-				</Box>
+				</Paper>
 
 			</Box>
 
-			{/* Partie Bas */}
+			
 			<Box elevation={1} sx={(theme) => theme.customComponents.section}>
 				<Typography variant="h2">
 					Les dernières ventes

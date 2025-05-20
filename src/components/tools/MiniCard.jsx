@@ -11,7 +11,8 @@ export default function MiniCard({ title, number, children }) {
 				display: 'flex',
 				alignItems:'center',
 				borderRadius: 3,
-				columnGap: 2
+				columnGap: 2,
+				backgroundColor: '#fff'
 			}}
 		>
 
