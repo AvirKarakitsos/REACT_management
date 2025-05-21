@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import Form from '../components/tools/Form'
 import CollapseComponent from '../components/tools/Collapse'
 import Grid from '../components/tools/Grid'
-import {data} from '../utilities/common.jsx'
+import {gridData} from '../utilities/common.jsx'
 
 
 export default function Stock() {
@@ -28,7 +28,7 @@ export default function Stock() {
 				<Typography variant="h2">
 					Les produits en stock
 				</Typography>
-				<Grid columns={data.columns} rows={data.rows}/>
+				<Grid columns={gridData.columns} rows={gridData.rows}/>
 			</Box>
 
 

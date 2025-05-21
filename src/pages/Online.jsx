@@ -3,7 +3,7 @@ import Form from '../components/tools/Form'
 import CollapseComponent from '../components/tools/Collapse'
 import Grid from '../components/tools/Grid'
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import { data } from '../utilities/common.jsx'
+import { gridData } from '../utilities/common.jsx'
 
 export default function Online() {
     return (
@@ -64,7 +64,7 @@ export default function Online() {
                 <Typography variant="h2">
                     Les produits en ligne
                 </Typography>
-                <Grid columns={data.columns} rows={data.rows}/>
+                <Grid columns={gridData.columns} rows={gridData.rows}/>
             </Box>
 
         </Box>

@@ -1,14 +1,14 @@
 import MiniCard from '../components/tools/MiniCard';
 import Grid from '../components/tools/Grid';
 import CercleContainer from '../components/tools/CercleContainer'
-import {data} from '../utilities/common.jsx'
+import {gridData, barData1} from '../utilities/common.jsx'
 
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import EuroIcon from '@mui/icons-material/Euro';
 
-import { BarChart } from '@mui/x-charts/BarChart';
 import { Box, Typography, Paper } from '@mui/material';
+import Bar from '../components/tools/Bar.jsx';
 
 
 export default function Overview() {
@@ -72,34 +72,9 @@ export default function Overview() {
 						...theme.customComponents.section,
 						width: '50%',
 					})}>
-					<BarChart
-						height={300}
-						borderRadius={8}
-						xAxis={[
-							{
-							scaleType: 'band',
-							data: ['Mois en cours'],
-							barGapRatio: 0.8,
-							},
-						]}
-						series={[
-							{
-							data: [2],
-							color: '#62fd89',
-							label: 'Rakuten'
-							},
-							{
-							data: [5],
-							color: '#fd6262',
-							label: 'Leboncoin'
-							},
-							{
-							data: [3],
-							color: '#fdb462',
-							label: 'Vinted'
-							},
-						]}
-					/>
+						
+					<Bar table={barData1}/>
+				
 				</Paper>
 
 			</Box>
@@ -109,7 +84,7 @@ export default function Overview() {
 				<Typography variant="h2">
 					Les dernières ventes
 				</Typography>
-				<Grid columns={data.columns} rows={data.rows}/>
+				<Grid columns={gridData.columns} rows={gridData.rows}/>
 			</Box>
 		</Box>
 	);

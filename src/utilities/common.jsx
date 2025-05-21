@@ -3,7 +3,46 @@ import StoreIcon from '@mui/icons-material/Store';
 import ComputerIcon from '@mui/icons-material/Computer';
 import BarChartIcon from '@mui/icons-material/BarChart';
 
-export const URI = 'http://localhost:4000'
+const plateforms = [
+	{color: '#62fd89', label: 'Rakuten'},
+	{color: '#fd6262', label: 'Leboncoin'},
+	{color: '#fdb462', label: 'Vinted'}
+]
+
+const data1 = [
+		{data: [2]},
+		{data: [4]},
+		{data: [3]},
+	]
+
+const data2 = [
+		{data: [2,7,4], stack: 'total'},
+		{data: [4,1,3], stack: 'total'},
+		{data: [3,0,3], stack: 'total'},
+	]
+
+export const barData1 = {
+	x: [{
+		data: ['Mois en cours'],
+		barGapRatio: 0.8,
+	}],
+	series: data1.map((row,idx) => ({
+		...row,
+		...plateforms[idx]
+	}))
+}
+
+export const barData2 = {
+	x: [{
+		data: ['Janv','Fev','Mars'],
+		categoryGapRatio: 0.5,
+	}],
+	series: data2.map((row,idx) => ({
+		...row,
+		...plateforms[idx]
+	}))
+} 
+
 
 
 export const menuData = [
@@ -40,7 +79,7 @@ export const menuData = [
     title: 'Ressources',
     items: [{
 			id: 1,
-			title: 'Mondil Relay',
+			title: 'Mondial Relay',
 			link: "/stock",
 			icone: null
 		},
@@ -82,7 +121,7 @@ export const menuData = [
 ];
 
 
-export const data = {
+export const gridData = {
     columns: [
         { field: 'id', headerName: 'ID', width: 90 },
         { field: 'firstName', headerName: 'Prénom', width: 150 },
