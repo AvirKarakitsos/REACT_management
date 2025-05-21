@@ -2,7 +2,7 @@ import { Drawer, List, ListItem, ListItemText, Typography, Box } from '@mui/mate
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as MuiLink } from '@mui/material';
-import { menuData } from '../utilities/common';
+import { menuData } from '../utilities/common.jsx';
 
 function Sidebar() {
 	const [selected, setSelected] = useState('Général')
@@ -38,7 +38,6 @@ function Sidebar() {
 											onClick={() => section.id === 1 && setSelected(content.title)}  
 											sx={{
 												display: 'flex',
-												alignItems: 'center',
 												columnGap: 1,
 												borderRadius:'15px',
 												color: selected === content.title ? 'text.primary' : 'text.secondary',
@@ -50,7 +49,7 @@ function Sidebar() {
 											}}	
 										>
 										{content.icone}
-										<ListItemText primary={content.title} sx={{ cursor: 'pointer'}}/>
+										<ListItemText primary={content.title} sx={{ cursor: 'pointer' }}/>
 									</ListItem>
 								</MuiLink>
 							))}

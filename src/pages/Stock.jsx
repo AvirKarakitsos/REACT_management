@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import Form from '../components/tools/Form'
 import CollapseComponent from '../components/tools/Collapse'
 import Grid from '../components/tools/Grid'
-import {data} from '../utilities/common.js'
+import {data} from '../utilities/common.jsx'
 
 
 export default function Stock() {

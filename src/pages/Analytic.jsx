@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import Grid from '../components/tools/Grid'
-import {data} from '../utilities/common.js'
+import {data} from '../utilities/common.jsx'
 
 export default function Analytic() {
     return (

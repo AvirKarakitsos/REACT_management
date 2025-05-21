@@ -1,7 +1,7 @@
 import MiniCard from '../components/tools/MiniCard';
 import Grid from '../components/tools/Grid';
 import CercleContainer from '../components/tools/CercleContainer'
-import {data} from '../utilities/common.js'
+import {data} from '../utilities/common.jsx'
 
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';

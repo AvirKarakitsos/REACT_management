@@ -57,26 +57,26 @@ export const menuData = [
     items: [{
 			id: 1,
 			title: 'Vinted',
-			link: `${URI}/logos/vinted-mini.jpeg`,
-			icone: null		
+			link: 'https://www.vinted.fr/member/239162131',
+			icone: <img src='/logos/vinted-mini.jpeg' height='20px' width='20px'/>		
 		},
 		{ 
 			id: 2,
 			title:'Rakuten',
 			link: "/stock",
-			icone: null		
+			icone: <img src='/logos/rakuten-mini.svg' height='20px' width='20px'/>		
 		},
 		{ 
 			id: 3,
 			title: 'Leboncoin',
 			link: "/stock",
-			icone: null		
+			icone: <img src='/logos/leboncoin-mini.svg' height='20px' width='20px'/>		
 		},
 		{ 
 			id: 4,
 			title: 'Ebay',
 			link: "/stock",
-			icone: null
+			icone: <img src='/logos/ebay-mini.png' height='20px' width='20px'/>
 	}]
   }
 ];
