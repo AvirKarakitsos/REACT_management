@@ -63,19 +63,19 @@ export const menuData = [
 		{ 
 			id: 2,
 			title:'Rakuten',
-			link: "/stock",
+			link: "https://fr.shopping.rakuten.com/",
 			icone: <img src='/logos/rakuten-mini.svg' height='20px' width='20px'/>		
 		},
 		{ 
 			id: 3,
 			title: 'Leboncoin',
-			link: "/stock",
-			icone: <img src='/logos/leboncoin-mini.svg' height='20px' width='20px'/>		
+			link: "https://www.leboncoin.fr/",
+			icone: <img src='/logos/leboncoin-mini.png' height='20px' width='20px'/>		
 		},
 		{ 
 			id: 4,
 			title: 'Ebay',
-			link: "/stock",
+			link: "https://www.ebay.fr/",
 			icone: <img src='/logos/ebay-mini.png' height='20px' width='20px'/>
 	}]
   }
