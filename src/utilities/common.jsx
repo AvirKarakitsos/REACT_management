@@ -3,6 +3,14 @@ import StoreIcon from '@mui/icons-material/Store';
 import ComputerIcon from '@mui/icons-material/Computer';
 import BarChartIcon from '@mui/icons-material/BarChart';
 
+export const pieData = [
+	{ id: 0, value: 10, label: 'series A' },
+	{ id: 1, value: 15, label: 'series B' },
+	{ id: 2, value: 20, label: 'series C' },
+] 
+
+
+
 const plateforms = [
 	{color: '#62fd89', label: 'Rakuten'},
 	{color: '#fd6262', label: 'Leboncoin'},
@@ -10,16 +18,16 @@ const plateforms = [
 ]
 
 const data1 = [
-		{data: [2]},
-		{data: [4]},
-		{data: [3]},
-	]
+	{data: [2]},
+	{data: [4]},
+	{data: [3]},
+]
 
 const data2 = [
-		{data: [2,7,4], stack: 'total'},
-		{data: [4,1,3], stack: 'total'},
-		{data: [3,0,3], stack: 'total'},
-	]
+	{data: [2,7,4], stack: 'total'},
+	{data: [4,1,3], stack: 'total'},
+	{data: [3,0,3], stack: 'total'},
+]
 
 export const barData1 = {
 	x: [{
