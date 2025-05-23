@@ -1,7 +1,8 @@
 import MiniCard from '../components/tools/MiniCard';
 import Grid from '../components/tools/Grid';
 import CercleContainer from '../components/tools/CercleContainer'
-import {gridData, barData1} from '../utilities/common.jsx'
+//import {gridData, barData1} from '../utilities/common.jsx'
+import { barData1} from '../utilities/common.jsx'
 
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';
@@ -84,7 +85,8 @@ export default function Overview() {
 				<Typography variant="h2">
 					Les dernières ventes
 				</Typography>
-				<Grid columns={gridData.columns} rows={gridData.rows}/>
+				{/* <Grid columns={gridData.columns} rows={gridData.rows}/> */}
+				<Grid />
 			</Box>
 		</Box>
 	);
