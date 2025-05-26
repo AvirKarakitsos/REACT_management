@@ -9,13 +9,34 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import { useState } from 'react';
 
 const handleDelete = (id) => {
-	confirm("Supprimer l'article "+id+" ?")
-	console.log('Delete user with id', id);
+	if(confirm("Supprimer l'article "+id+" ?")) console.log('Delete user with id', id);
 };
 
-const handleState = (id) => {
-	confirm("Etes vous sûr d'envoyer l'article "+id+" en ligne ?")
-	console.log('User State user with id', id);
+const handleState = (id, state, arrow) => {
+	switch(state) {
+		case 'stock':
+			if(arrow === 'r') {
+				if(confirm("Etes vous sûr d'envoyer l'article "+id+" en ligne?")) console.log('User State user with id', id)
+			} else if(arrow === 'rr') {
+				if(confirm("Etes vous sûr de marquer l'article "+id+" comme vendu ?")) console.log('User State user with id', id);
+			}
+			break;
+		case 'online':  
+			if(arrow === 'r') {
+					if(confirm("Etes vous sûr de marquer l'article "+id+" comme vendu ?")) console.log('User State user with id', id);
+				} else if(arrow === 'l'){
+					if(confirm("Etes vous d'envoyer l'article "+id+" en stock ?")) console.log('User State user with id', id);
+				}
+			break;
+			case 'analytic':  
+			if(arrow === 'l') {
+				if(confirm("Etes vous d'envoyer l'article "+id+" en ligne ?")) console.log('User State user with id', id);
+			} else if(arrow === 'll'){
+				if(confirm("Etes vous d'envoyer l'article "+id+" en stock ?")) console.log('User State user with id', id);
+			}
+			break;
+		default: break;
+	}
 }; 
 
 
@@ -50,25 +71,25 @@ export default function UserTable({page}) {
 			  <DeleteIcon />
 			</IconButton>
      		 {page === 'stock' ?
-				<><IconButton onClick={() => handleState(params.row.id)}>
+				<><IconButton onClick={() => handleState(params.row.id, page, 'r')}>
 				<KeyboardArrowRightIcon fontSize='large' />
 				</IconButton>
-				<IconButton onClick={() => handleState(params.row.id)}>
+				<IconButton onClick={() => handleState(params.row.id, page, 'rr')}>
 				<KeyboardDoubleArrowRightIcon fontSize='large' />
 				</IconButton></>
 
 				: page === 'online'?
-					<><IconButton onClick={() => handleState(params.row.id)}>
+					<><IconButton onClick={() => handleState(params.row.id, page, 'l')}>
 					<KeyboardArrowLeftIcon fontSize='large' />
 					</IconButton>
-					<IconButton onClick={() => handleState(params.row.id)}>
+					<IconButton onClick={() => handleState(params.row.id, page, 'r')}>
 					<KeyboardArrowRightIcon fontSize='large' />
 					</IconButton></>
 
-					: page === 'analytic' ? <><IconButton onClick={() => handleState(params.row.id)}>
+					: page === 'analytic' ? <><IconButton onClick={() => handleState(params.row.id, page, 'l')}>
 						<KeyboardDoubleArrowLeftIcon fontSize='large' />
 					</IconButton>
-					<IconButton onClick={() => handleState(params.row.id)}>
+					<IconButton onClick={() => handleState(params.row.id, page, 'll')}>
 					<KeyboardArrowLeftIcon fontSize='large' />
 					</IconButton></>
 						
@@ -81,12 +102,12 @@ export default function UserTable({page}) {
 	
 	const handleEdit = (user) => {
 		setOpen(true)
-	  	console.log('Edit', user);
+		  console.log('Edit', user);
 	};
 	const handleClose = () => {
-    setOpen(false);
-    setSelectedUser(null);
-  };
+	setOpen(false);
+	setSelectedUser(null);
+	};
 
 //   const handleSave = () => {
 //     setUsers((prev) =>
