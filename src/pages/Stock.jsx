@@ -5,7 +5,7 @@ import Pie from '../components/tools/Pie'
 import Grid from '../components/tools/Grid'
 import MiniCard from '../components/tools/MiniCard'
 import CercleContainer from '../components/tools/CercleContainer'
-import {gridData, pieData} from '../utilities/common.jsx'
+import { pieData} from '../utilities/common.jsx'
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 
 
@@ -56,7 +56,7 @@ export default function Stock() {
 				<Typography variant="h2">
 					Les produits en stock
 				</Typography>
-				<Grid columns={gridData.columns} rows={gridData.rows}/>
+				<Grid page='stock' />
 			</Box>
 
 

@@ -1,8 +1,11 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { IconButton, Dialog,  DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ForwardIcon from '@mui/icons-material/Forward';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { useState } from 'react';
 
 const handleDelete = (id) => {
@@ -17,7 +20,7 @@ const handleState = (id) => {
 
 
 
-export default function UserTable() {
+export default function UserTable({page}) {
 	//const [users, setUsers] = useState(initialUsers);
 	const [open, setOpen] = useState(false);
 	const [selectedUser, setSelectedUser] = useState(null);
@@ -36,7 +39,7 @@ export default function UserTable() {
 	  {
 		field: 'actions',
 		headerName: 'Actions',
-		width: 200,
+		width: 400,
 		sortable: false,
 		renderCell: (params) => (
 		  <>
@@ -46,9 +49,31 @@ export default function UserTable() {
 			<IconButton onClick={() => handleDelete(params.row.id)}>
 			  <DeleteIcon />
 			</IconButton>
-			<IconButton onClick={() => handleState(params.row.id)}>
-			  <ForwardIcon />
-			</IconButton>
+     		 {page === 'stock' ?
+				<><IconButton onClick={() => handleState(params.row.id)}>
+				<KeyboardArrowRightIcon fontSize='large' />
+				</IconButton>
+				<IconButton onClick={() => handleState(params.row.id)}>
+				<KeyboardDoubleArrowRightIcon fontSize='large' />
+				</IconButton></>
+
+				: page === 'online'?
+					<><IconButton onClick={() => handleState(params.row.id)}>
+					<KeyboardArrowLeftIcon fontSize='large' />
+					</IconButton>
+					<IconButton onClick={() => handleState(params.row.id)}>
+					<KeyboardArrowRightIcon fontSize='large' />
+					</IconButton></>
+
+					: page === 'analytic' ? <><IconButton onClick={() => handleState(params.row.id)}>
+						<KeyboardDoubleArrowLeftIcon fontSize='large' />
+					</IconButton>
+					<IconButton onClick={() => handleState(params.row.id)}>
+					<KeyboardArrowLeftIcon fontSize='large' />
+					</IconButton></>
+						
+						: null
+     		 }
 		  </>
 		),
 	  },
