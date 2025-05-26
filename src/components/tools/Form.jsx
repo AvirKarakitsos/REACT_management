@@ -53,9 +53,10 @@ const FormulaireProduit = ( {children} ) => {
 				name="category"
 				fullWidth
 			>
-				<MenuItem value="choix1">Livre</MenuItem>
-				<MenuItem value="choix2">Vêtement</MenuItem>
-				<MenuItem value="choix3">Autre</MenuItem>
+				<MenuItem value="1">Livre</MenuItem>
+				<MenuItem value="2">Objets à collectionner</MenuItem>
+				<MenuItem value="3">Vêtement</MenuItem>
+				<MenuItem value="4">Autre</MenuItem>
 			</TextField>
 
 			<Button type="submit" variant="contained">

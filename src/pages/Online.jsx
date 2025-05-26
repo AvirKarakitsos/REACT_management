@@ -20,7 +20,7 @@ export default function Online() {
 			<CollapseComponent title="Ajouter un produit en ligne">
 				<Form>
                     <FormControl component="fieldset">
-                        <FormLabel component="legend">Veuillez faire un choix :</FormLabel>
+                        <FormLabel component="legend">Disponible sur :</FormLabel>
                         <RadioGroup
                         aria-label="choix"
                         name="choix"
@@ -28,12 +28,12 @@ export default function Online() {
                         sx={ {display: 'flex', gap: 1} }
                         >
                             <Box  sx={ {display: 'flex', columnGap: 4} }>
-                                <FormControlLabel value="choix1" control={<Radio />} label="Choix 1" />
-                                <FormControlLabel value="choix2" control={<Radio />} label="Choix 2" />
+                                <FormControlLabel value="1" control={<Radio />} label="Vinted" />
+                                <FormControlLabel value="2" control={<Radio />} label="Rakuten" />
                             </Box>
                             <Box  sx={ {display: 'flex', columnGap: 4} }>
-                                <FormControlLabel value="choix3" control={<Radio />} label="Choix 3" />
-                                <FormControlLabel value="choix4" control={<Radio />} label="Choix 4" />
+                                <FormControlLabel value="3" control={<Radio />} label="Leboncoin" />
+                                <FormControlLabel value="4" control={<Radio />} label="Ebay" />
                             </Box>
                         </RadioGroup>
                     </FormControl>
