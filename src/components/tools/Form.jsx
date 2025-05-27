@@ -1,14 +1,10 @@
-import {
-  Box,
-  Typography,
-  TextField,
-  MenuItem,
-  Button,
-} from '@mui/material';
-
+import {Box,Typography,TextField,MenuItem,Button, Select, InputLabel} from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { useForm, Controller } from "react-hook-form";
 
 export default function Form( {page} ) {
+	const { register, handleSubmit, control} = useForm(); //watch, formState: { errors } 
+  	const onSubmit = data => console.log(data);
   
 	return (
 		<Box
@@ -21,20 +17,21 @@ export default function Form( {page} ) {
 				borderRadius: 2,
 				backgroundColor: '#f9f9f9',
 			}}
+			onSubmit={handleSubmit(onSubmit)}
 		>
 
 			<Box sx={ {width: '50%', p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 
 				<TextField
 					label="Titre"
-					name="title"
+					{...register("title", { required: "Ce champ est requis" })}
 					fullWidth
 				/>
 
 				{/* Description */}
 				<TextField
 					label="Description"
-					name="description"
+					{...register("description", { required: "Ce champ est requis" })}
 					multiline
 					rows={4}
 					fullWidth
@@ -43,24 +40,29 @@ export default function Form( {page} ) {
 				{/* Prix */}
 				<TextField
 					label="Prix (€)"
-					name="price"
+					{...register("price", { required: "Ce champ est requis" })}
 					type="number"
 					fullWidth
 				/>
 
 				{/* Options */}
-				<TextField
-					select
-					value=""
-					label="Catégorie"
+				<Controller
 					name="category"
-					fullWidth
-				>
-					<MenuItem value="1">Livre</MenuItem>
-					<MenuItem value="2">Objets à collectionner</MenuItem>
-					<MenuItem value="3">Vêtement</MenuItem>
-					<MenuItem value="4">Autre</MenuItem>
-				</TextField>
+					control={control}
+					defaultValue=""
+					render={({ field }) => (
+						<Select
+							{...field}
+							fullWidth
+							label="Catégorie"
+						>
+							<MenuItem value="1">Livre</MenuItem>
+							<MenuItem value="2">Objets à collectionner</MenuItem>
+							<MenuItem value="3">Vêtement</MenuItem>
+							<MenuItem value="4">Autre</MenuItem>
+						</Select>
+					)}
+				/>
 
 				<Button type="submit" variant="contained">
 					Enregistrer
@@ -71,7 +73,7 @@ export default function Form( {page} ) {
 				<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 					<TextField
 						label="Indiquez les liens (séparer par des ;)"
-						name="platform"
+						{...register("platform", { required: "Ce champ est requis" })}
 						fullWidth
 					/>
 
