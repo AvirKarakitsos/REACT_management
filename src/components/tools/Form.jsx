@@ -24,7 +24,7 @@ const FormulaireProduit = ( {children} ) => {
 
 			<TextField
 				label="Titre"
-				name="titre"
+				name="title"
 				fullWidth
 			/>
 
@@ -64,7 +64,7 @@ const FormulaireProduit = ( {children} ) => {
 			</Button>
 		</Box>
 
-		<Box sx={ {width: '50%',p: 2, display: 'flex', flexDirection: 'column', gap: 2} }>
+		<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 			{children}
 		</Box>
 	</Box>
