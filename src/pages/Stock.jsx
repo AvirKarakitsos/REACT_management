@@ -40,8 +40,7 @@ export default function Stock() {
 				</MiniCard>
 
 				<Paper elevation={2} sx={(theme) => ({
-					...theme.customComponents.section,
-				
+					...theme.customComponents.section
 				})}>					
 					<Pie table={pieData}/>
 				</Paper>
