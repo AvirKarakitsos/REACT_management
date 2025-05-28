@@ -2,6 +2,9 @@ import Grid from '../components/tools/Grid'
 import Bar from '../components/tools/Bar'
 import { barData2} from '../utilities/common.jsx'
 import { Box, Typography, Paper } from '@mui/material';
+import Form from '../components/tools/Form'
+import CollapseComponent from '../components/tools/Collapse'
+
 
 export default function Analytic() {
     
@@ -26,6 +29,11 @@ export default function Analytic() {
                 <Bar table={barData2}/>
 
             </Paper>
+
+            <CollapseComponent title="Indiquer un article comme vendu">
+                <Form page='sold'/>
+            </CollapseComponent>
+            
 
 
             <Box elevation={1} sx={(theme) => theme.customComponents.section}>

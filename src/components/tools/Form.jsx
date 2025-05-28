@@ -1,4 +1,4 @@
-import {Box,Typography,TextField,MenuItem,Button, Select, InputLabel} from '@mui/material';
+import {Box,Typography,TextField,MenuItem,Button, Select, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useForm, Controller } from "react-hook-form";
 
@@ -73,7 +73,7 @@ export default function Form( {page} ) {
 				<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 					<TextField
 						label="Indiquez les liens (séparer par des ;)"
-						{...register("platform", { required: "Ce champ est requis" })}
+						{...register("link", { required: "Ce champ est requis" })}
 						fullWidth
 					/>
 
@@ -94,6 +94,36 @@ export default function Form( {page} ) {
 						Fichier sélectionné
 						</Typography>
 					</Box>
+				</Box>
+				: null
+			}
+
+
+			{ page === 'sold' ?
+				<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
+					<FormControl component="fieldset">
+						<FormLabel component="legend">Disponible sur :</FormLabel>
+						<Controller
+							name="platform"
+							control={control}
+							defaultValue=""
+							render={({ field }) => (
+								<RadioGroup
+								{...field}
+								sx={{ display: "flex", gap: 1 }}
+								>
+								<Box sx={{ display: "flex", columnGap: 4 }}>
+									<FormControlLabel value="1" control={<Radio />} label="Vinted" />
+									<FormControlLabel value="2" control={<Radio />} label="Rakuten" />
+								</Box>
+								<Box sx={{ display: "flex", columnGap: 4 }}>
+									<FormControlLabel value="3" control={<Radio />} label="Leboncoin" />
+									<FormControlLabel value="4" control={<Radio />} label="Ebay" />
+								</Box>
+								</RadioGroup>
+							)}
+						/>
+                    </FormControl>
 				</Box>
 				: null
 			}
