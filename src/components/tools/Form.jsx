@@ -22,13 +22,14 @@ export default function Form( {page} ) {
 
 			<Box sx={ {width: '50%', p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 
+				<input type="hidden" value={page} {...register("state")} />
+
 				<TextField
 					label="Titre"
 					{...register("title", { required: "Ce champ est requis" })}
 					fullWidth
 				/>
 
-				{/* Description */}
 				<TextField
 					label="Description"
 					{...register("description", { required: "Ce champ est requis" })}
@@ -37,7 +38,6 @@ export default function Form( {page} ) {
 					fullWidth
 				/>
 
-				{/* Prix */}
 				<TextField
 					label="Prix (€)"
 					{...register("price", { required: "Ce champ est requis" })}
