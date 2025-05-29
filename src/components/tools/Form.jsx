@@ -4,7 +4,30 @@ import { useForm, Controller } from "react-hook-form";
 
 export default function Form( {page} ) {
 	const { register, handleSubmit, control} = useForm(); //watch, formState: { errors } 
-  	const onSubmit = data => console.log(data);
+  	
+	const onSubmit = async (data) => {
+		try {
+			const response = await fetch("http://localhost:4000/api/articles", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json", // Indique qu'on envoie du JSON
+			},
+			body: JSON.stringify(data), // Convertit les données du formulaire en JSON
+			});
+
+			if (!response.ok) {
+			throw new Error("Erreur lors de l'envoi du formulaire");
+			}
+
+			const result = await response.json();
+			console.log(result);
+			
+			//alert("Article enregistré avec succès !");
+		} catch (error) {
+			console.error("Erreur lors de la requête :", error);
+			//alert("Une erreur est survenue. Veuillez réessayer.");
+		}
+	};
   
 	return (
 		<Box
@@ -50,6 +73,7 @@ export default function Form( {page} ) {
 					name="category"
 					control={control}
 					defaultValue=""
+					rules={{ required: "Ce champ est requis" }}
 					render={({ field }) => (
 						<Select
 							{...field}
@@ -107,6 +131,7 @@ export default function Form( {page} ) {
 							name="platform"
 							control={control}
 							defaultValue=""
+							rules={{ required: "Ce champ est requis" }}
 							render={({ field }) => (
 								<RadioGroup
 								{...field}
