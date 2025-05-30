@@ -1,13 +1,14 @@
 import {Box,Typography,TextField,MenuItem,Button, Select, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useForm, Controller } from "react-hook-form";
+import { serverUrl } from '../../utilities/constants';
 
 export default function Form( {page} ) {
 	const { register, handleSubmit, control} = useForm(); //watch, formState: { errors } 
   	
 	const onSubmit = async (data) => {
 		try {
-			const response = await fetch("http://localhost:4000/api/articles", {
+			const response = await fetch(`${serverUrl}/api/articles`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json", // Indique qu'on envoie du JSON

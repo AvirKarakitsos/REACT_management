@@ -9,9 +9,13 @@ import EuroIcon from '@mui/icons-material/Euro';
 
 import { Box, Typography, Paper } from '@mui/material';
 import Bar from '../components/tools/Bar.jsx';
+import { useFetch } from '../utilities/useFetch.jsx';
+import {serverUrl} from '../utilities/constants.js'
 
 
 export default function Overview() {
+	const { table, load} = useFetch(`${serverUrl}/articles/figures`)
+
 	return (
 		<Box
 			component="main"
@@ -33,6 +37,9 @@ export default function Overview() {
 				p: 4
 				}}
 			>
+				 
+			{load ? table : null}
+
 				<MiniCard title="Produits en stock" number='3'>
 					<CercleContainer>
 						<Inventory2Icon fontSize="small" />
