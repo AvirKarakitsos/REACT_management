@@ -1,6 +1,7 @@
 import { Box, Typography, Paper } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
-export default function MiniCard({ title, number, children }) {
+export default function MiniCard({ title, number, load, children }) {
 	return (
 		<Paper
 			elevation={2}
@@ -23,7 +24,7 @@ export default function MiniCard({ title, number, children }) {
 					{title}
 				</Typography>
 				<Typography variant="caption" noWrap fontSize={20} fontWeight={'600'}>
-					{number}
+					{!load ? number : <CircularProgress fontSize='small' />}
 				</Typography>
 			</Box>
 			

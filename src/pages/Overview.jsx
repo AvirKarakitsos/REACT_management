@@ -14,7 +14,7 @@ import {serverUrl} from '../utilities/constants.js'
 
 
 export default function Overview() {
-	const { table, load} = useFetch(`${serverUrl}/articles/figures`)
+	const { table, load} = useFetch(`${serverUrl}/articles/all/figures`)
 
 	return (
 		<Box
@@ -37,24 +37,23 @@ export default function Overview() {
 				p: 4
 				}}
 			>
-				 
-			{load ? table : null}
 
-				<MiniCard title="Produits en stock" number='3'>
-					<CercleContainer>
-						<Inventory2Icon fontSize="small" />
-					</CercleContainer>
-				</MiniCard>
-				<MiniCard title="Produits en ligne" number='5'>
-					<CercleContainer>
-						<LaptopIcon fontSize="small" />
-					</CercleContainer>
-				</MiniCard>
-				<MiniCard title="Gain Total" number='253 €'>
-					<CercleContainer>
-						<EuroIcon fontSize="small" />
-					</CercleContainer>
-				</MiniCard>
+			<MiniCard title="Produits en stock" number={table.numberStock} load={load}>
+				<CercleContainer>
+					<Inventory2Icon fontSize="small" />
+				</CercleContainer>
+			</MiniCard>
+			
+			<MiniCard title="Produits en ligne" number={table.numberOnline} load={load}>
+				<CercleContainer>
+					<LaptopIcon fontSize="small" />
+				</CercleContainer>
+			</MiniCard>
+			<MiniCard title="Gain Total" number={`${table.sumSold/100}€`} load={load}>
+				<CercleContainer>
+					<EuroIcon fontSize="small" />
+				</CercleContainer>
+			</MiniCard>
 
 			</Box>
 
