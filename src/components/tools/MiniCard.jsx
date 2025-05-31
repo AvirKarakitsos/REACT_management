@@ -24,7 +24,7 @@ export default function MiniCard({ title, number, load, children }) {
 					{title}
 				</Typography>
 				<Typography variant="caption" noWrap fontSize={20} fontWeight={'600'}>
-					{!load ? number : <CircularProgress fontSize='small' />}
+					{!load ? number : <CircularProgress size={20} thickness={5} />}
 				</Typography>
 			</Box>
 			

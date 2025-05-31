@@ -1,7 +1,9 @@
 import MiniCard from '../components/tools/MiniCard';
 import Grid from '../components/tools/Grid';
 import CercleContainer from '../components/tools/CercleContainer'
-import { barData1} from '../utilities/common.jsx'
+//import { barData1} from '../utilities/common.jsx'
+
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';
@@ -14,7 +16,8 @@ import {serverUrl} from '../utilities/constants.js'
 
 
 export default function Overview() {
-	const { table, load} = useFetch(`${serverUrl}/articles/all/figures`)
+	const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
+	const { table: barData, load: isLoadingBarData } = useFetch(`${serverUrl}/articles/sold/recent`)
 
 	return (
 		<Box
@@ -38,18 +41,18 @@ export default function Overview() {
 				}}
 			>
 
-			<MiniCard title="Produits en stock" number={table.numberStock} load={load}>
+			<MiniCard title="Produits en stock" number={figures.numberStock} load={isLoadingFigures}>
 				<CercleContainer>
 					<Inventory2Icon fontSize="small" />
 				</CercleContainer>
 			</MiniCard>
 			
-			<MiniCard title="Produits en ligne" number={table.numberOnline} load={load}>
+			<MiniCard title="Produits en ligne" number={figures.numberOnline} load={isLoadingFigures}>
 				<CercleContainer>
 					<LaptopIcon fontSize="small" />
 				</CercleContainer>
 			</MiniCard>
-			<MiniCard title="Gain Total" number={`${table.sumSold/100}€`} load={load}>
+			<MiniCard title="Gain Total" number={`${figures.sumSold/100}€`} load={isLoadingFigures}>
 				<CercleContainer>
 					<EuroIcon fontSize="small" />
 				</CercleContainer>
@@ -70,7 +73,7 @@ export default function Overview() {
 						Les ventes du mois
 					</Typography>
 					<Typography sx={ {width: '45%', fontSize: '50px', } }>
-						35 €
+						{ !isLoadingBarData ? `${barData.totalSum}€` :  <CircularProgress/>}
 					</Typography>
 				</Paper>
 
@@ -79,7 +82,7 @@ export default function Overview() {
 						width: '50%',
 					})}>
 						
-					<Bar table={barData1}/>
+					<Bar table={barData} load={isLoadingBarData}/> : 
 				
 				</Paper>
 
