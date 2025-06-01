@@ -16,6 +16,7 @@ import {serverUrl} from '../utilities/constants.js'
 export default function Overview() {
 	const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
 	const { table: barData, load: isLoadingBarData } = useFetch(`${serverUrl}/articles/sold/recent`)
+	const { table: gridData, load: isLoadingGridData } = useFetch(`${serverUrl}/articles/all/recent`)
 
 	return (
 		<Box
@@ -90,9 +91,9 @@ export default function Overview() {
 			
 			<Box elevation={1} sx={(theme) => theme.customComponents.section}>
 				<Typography variant="h2">
-					Les dernières ventes
+					Les derniers articles mis en ligne
 				</Typography>
-				<Grid />
+				<Grid page="overview" data={gridData} load={isLoadingGridData}/>
 			</Box>
 		</Box>
 	);

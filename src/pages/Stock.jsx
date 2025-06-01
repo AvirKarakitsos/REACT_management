@@ -14,7 +14,7 @@ import {serverUrl} from '../utilities/constants.js'
 export default function Stock() {
 	const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
 	const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/stock/categories`)
-
+	const { table: gridData, load: isLoadingGridData } = useFetch(`${serverUrl}/articles/stock`)
 
     return (
         <Box
@@ -59,7 +59,7 @@ export default function Stock() {
 				<Typography variant="h2">
 					Les produits en stock
 				</Typography>
-				<Grid page='stock' />
+				<Grid data={gridData} load={isLoadingGridData} />
 			</Box>
 
 

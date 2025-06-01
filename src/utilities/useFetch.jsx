@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { grid } from './common.jsx'
 
 export function useFetch(url) {
     
@@ -10,12 +11,21 @@ export function useFetch(url) {
         
         if (!url) return
 
+        
         async function fetchData() {
+            let newUrl = new URL(url)
             try {
                 const response = await fetch(url, {signal:controller.signal})
                 const result = await response.json()
+
+                if(newUrl.pathname === `/api/articles/all/recent` || newUrl.pathname === `/api/articles/stock` || newUrl.pathname === `/api/articles/sold`) {
+                    let finalResult=grid(result)
+                    setTable(finalResult)
+
+                } else {
+                    setTable(result)
+                }
                 
-                setTable(result)
                 setLoad(false)
 
             } catch(err) {

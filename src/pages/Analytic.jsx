@@ -9,7 +9,8 @@ import { useFetch } from '../utilities/useFetch.jsx';
 
 export default function Analytic() {
     const { table: barData, load: isLoadingBarData } = useFetch(`${serverUrl}/articles/sold/monthly`)
-    
+    const { table: gridData, load: isLoadingGridData } = useFetch(`${serverUrl}/articles/sold`)
+  
     return (
        <Box
             component="main"
@@ -42,7 +43,7 @@ export default function Analytic() {
 				<Typography variant="h2">
 					Les produits vendus
 				</Typography>
-                <Grid page='analytic'/>
+                <Grid data={gridData} load={isLoadingGridData}/>
             </Box>
                 
         </Box>

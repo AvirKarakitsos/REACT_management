@@ -3,12 +3,6 @@ import StoreIcon from '@mui/icons-material/Store';
 import ComputerIcon from '@mui/icons-material/Computer';
 import BarChartIcon from '@mui/icons-material/BarChart';
 
-export const pieData = [
-	{ id: 0, value: 10, label: 'series A' },
-	{ id: 1, value: 15, label: 'series B' },
-	{ id: 2, value: 20, label: 'series C' },
-] 
-
 export const menuData = [
   {
 	id: 1,
@@ -84,6 +78,22 @@ export const menuData = [
   }
 ];
 
+
+export function grid(data) {
+	const columns = []
+
+	const first = data.result[0]
+	
+	for(let key in first) {
+		let element = {
+			field: key,
+			headerName: key
+		}
+		columns.push(element)
+	}
+
+	return {columns, rows: data.result}
+}
 
 
 export const gridData = {
