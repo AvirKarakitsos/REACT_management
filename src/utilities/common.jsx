@@ -9,50 +9,6 @@ export const pieData = [
 	{ id: 2, value: 20, label: 'series C' },
 ] 
 
-
-
-const plateforms = [
-	{color: '#62fd89', label: 'Rakuten'},
-	{color: '#fd6262', label: 'Leboncoin'},
-	{color: '#fdb462', label: 'Vinted'}
-]
-
-const data1 = [
-	{data: [2]},
-	{data: [4]},
-	{data: [3]},
-]
-
-const data2 = [
-	{data: [2,7,4], stack: 'total'},
-	{data: [4,1,3], stack: 'total'},
-	{data: [3,0,3], stack: 'total'},
-]
-
-export const barData1 = {
-	x: [{
-		data: ['Mois en cours'],
-		barGapRatio: 0.8,
-	}],
-	series: data1.map((row,idx) => ({
-		...row,
-		...plateforms[idx]
-	}))
-}
-
-export const barData2 = {
-	x: [{
-		data: ['Janv','Fev','Mars'],
-		categoryGapRatio: 0.5,
-	}],
-	series: data2.map((row,idx) => ({
-		...row,
-		...plateforms[idx]
-	}))
-} 
-
-
-
 export const menuData = [
   {
 	id: 1,

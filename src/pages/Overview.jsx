@@ -1,16 +1,14 @@
 import MiniCard from '../components/tools/MiniCard';
 import Grid from '../components/tools/Grid';
 import CercleContainer from '../components/tools/CercleContainer'
-//import { barData1} from '../utilities/common.jsx'
-
 import CircularProgress from '@mui/material/CircularProgress';
 
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import EuroIcon from '@mui/icons-material/Euro';
+import Bar from '../components/tools/Bar.jsx';
 
 import { Box, Typography, Paper } from '@mui/material';
-import Bar from '../components/tools/Bar.jsx';
 import { useFetch } from '../utilities/useFetch.jsx';
 import {serverUrl} from '../utilities/constants.js'
 
@@ -82,7 +80,7 @@ export default function Overview() {
 						width: '50%',
 					})}>
 						
-					<Bar table={barData} load={isLoadingBarData}/> : 
+					<Bar table={barData} load={isLoadingBarData}/>
 				
 				</Paper>
 

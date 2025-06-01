@@ -1,12 +1,14 @@
 import Grid from '../components/tools/Grid'
 import Bar from '../components/tools/Bar'
-import { barData2} from '../utilities/common.jsx'
 import { Box, Typography, Paper } from '@mui/material';
 import Form from '../components/tools/Form'
 import CollapseComponent from '../components/tools/Collapse'
+import {serverUrl} from '../utilities/constants.js'
+import { useFetch } from '../utilities/useFetch.jsx';
 
 
 export default function Analytic() {
+    const { table: barData, load: isLoadingBarData } = useFetch(`${serverUrl}/articles/sold/monthly`)
     
     return (
        <Box
@@ -26,7 +28,7 @@ export default function Analytic() {
                     borderRadius: 2
                 })}>
                 
-                <Bar table={barData2}/>
+                <Bar table={barData} load={isLoadingBarData}/>
 
             </Paper>
 
