@@ -13,6 +13,7 @@ import {serverUrl} from '../utilities/constants.js'
 export default function Online() {
     const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
     const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/online/categories`)
+	const { table: gridData, load: isLoadingGridData } = useFetch(`${serverUrl}/articles/online`)
 
     return (
          <Box
@@ -57,7 +58,7 @@ export default function Online() {
                 <Typography variant="h2">
                     Les produits en ligne
                 </Typography>
-                <Grid page='online'/>
+                <Grid data={gridData} load={isLoadingGridData} />
             </Box>
 
         </Box>

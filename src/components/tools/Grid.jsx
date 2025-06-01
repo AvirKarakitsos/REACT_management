@@ -46,28 +46,14 @@ export default function UserTable({ data, load}) {
 	//const [users, setUsers] = useState(initialUsers);
 	const [open, setOpen] = useState(false);
 	const [selectedUser, setSelectedUser] = useState(null);
-
-	// const rows = [
-	// 	{ id: 1, nom: 'Dupont', prenom: 'Jean', age: 34 },
-	// 	{ id: 2, nom: 'Martin', prenom: 'Claire', age: 28 },
-	// 	// ...
-	// ];
-
-	// const columns = [
-	//   { field: 'id', headerName: 'ID', width: 90 },
-	//   { field: 'nom', headerName: 'Nom', width: 150 },
-	//   { field: 'prenom', headerName: 'Prénom', width: 150 },
-	//   { field: 'age', headerName: 'Âge', type: 'number', width: 110 },
-	  
-	// ];
 	
 	// const handleEdit = (user) => {
 	// 	setOpen(true)
 	// 	  console.log('Edit', user);
 	// };
 	const handleClose = () => {
-	setOpen(false);
-	setSelectedUser(null);
+		setOpen(false);
+		setSelectedUser(null);
 	};
 
 //   const handleSave = () => {
