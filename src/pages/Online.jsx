@@ -6,10 +6,14 @@ import MiniCard from '../components/tools/MiniCard'
 import CercleContainer from '../components/tools/CercleContainer'
 import LaptopIcon from '@mui/icons-material/Laptop';
 import Pie from '../components/tools/Pie'
-import { pieData} from '../utilities/common.jsx'
+import { useFetch } from '../utilities/useFetch.jsx';
+import {serverUrl} from '../utilities/constants.js'
 
 
 export default function Online() {
+    const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
+    const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/online/categories`)
+
     return (
          <Box
 			component="main"
@@ -31,7 +35,7 @@ export default function Online() {
                 p: 4
                 }}
             >
-                <MiniCard title="Produits en ligne" number='5'>
+                <MiniCard title="Produits en ligne" number={figures.numberOnline} load={isLoadingFigures}>
                     <CercleContainer>
                         <LaptopIcon fontSize="small" />
                     </CercleContainer>
@@ -41,7 +45,7 @@ export default function Online() {
                     ...theme.customComponents.section,
                 
                 })}>					
-                    <Pie table={pieData}/>
+                    <Pie table={pieData.result} load={isLoadingPieData}/>
                 </Paper>
             </Box>
 		

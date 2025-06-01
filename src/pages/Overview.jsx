@@ -77,6 +77,7 @@ export default function Overview() {
 
 				<Paper elevation={2} sx={(theme) => ({
 						...theme.customComponents.section,
+						height:'400px',
 						width: '50%',
 					})}>
 						

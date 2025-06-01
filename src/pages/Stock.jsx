@@ -5,11 +5,15 @@ import Pie from '../components/tools/Pie'
 import Grid from '../components/tools/Grid'
 import MiniCard from '../components/tools/MiniCard'
 import CercleContainer from '../components/tools/CercleContainer'
-import { pieData} from '../utilities/common.jsx'
 import Inventory2Icon from '@mui/icons-material/Inventory2';
+
+import { useFetch } from '../utilities/useFetch.jsx';
+import {serverUrl} from '../utilities/constants.js'
 
 
 export default function Stock() {
+	const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
+	const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/stock/categories`)
 
 
     return (
@@ -33,7 +37,7 @@ export default function Stock() {
 				p: 4
 				}}
 			>
-				<MiniCard title="Produits en stock" number='3'>
+				<MiniCard title="Produits en stock" number={figures.numberStock} load={isLoadingFigures}>
 					<CercleContainer>
 						<Inventory2Icon fontSize="small" />
 					</CercleContainer>
@@ -42,7 +46,7 @@ export default function Stock() {
 				<Paper elevation={2} sx={(theme) => ({
 					...theme.customComponents.section
 				})}>					
-					<Pie table={pieData}/>
+					<Pie table={pieData.result} load={isLoadingPieData}/>
 				</Paper>
 
 			</Box>

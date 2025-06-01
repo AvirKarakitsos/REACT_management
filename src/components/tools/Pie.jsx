@@ -1,9 +1,9 @@
 import { PieChart } from '@mui/x-charts/PieChart';
+import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Pie({ table }) {
+export default function Pie({ table, load }) {
 
-
-    return (
+    if(!load) return (
         <PieChart
             series={[
                 {
@@ -14,4 +14,5 @@ export default function Pie({ table }) {
             height={200}
         />			
     )
+    else return(<CircularProgress/>)
 }

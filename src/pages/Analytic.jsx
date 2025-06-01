@@ -24,7 +24,7 @@ export default function Analytic() {
 
             <Paper elevation={2} sx={(theme) => ({
                     ...theme.customComponents.section,
-                    width: '50%',
+                    height:'400px',
                     borderRadius: 2
                 })}>
                 
