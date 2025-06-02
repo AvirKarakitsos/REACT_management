@@ -1,34 +1,35 @@
 import {Box,Typography,TextField,MenuItem,Button, Select, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useForm, Controller } from "react-hook-form";
-import { serverUrl } from '../../utilities/constants';
+//import { serverUrl } from '../../utilities/constants';
 
 export default function Form( {page} ) {
 	const { register, handleSubmit, control} = useForm(); //watch, formState: { errors } 
-  	
-	const onSubmit = async (data) => {
-		try {
-			const response = await fetch(`${serverUrl}/api/articles`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json", // Indique qu'on envoie du JSON
-			},
-			body: JSON.stringify(data), // Convertit les données du formulaire en JSON
-			});
+	
+	const onSubmit = (data) => console.log(data)
+	// const onSubmit = async (data) => {
+	// 	try {
+	// 		const response = await fetch(`${serverUrl}/api/articles`, {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json", // Indique qu'on envoie du JSON
+	// 		},
+	// 		body: JSON.stringify(data), // Convertit les données du formulaire en JSON
+	// 		});
 
-			if (!response.ok) {
-			throw new Error("Erreur lors de l'envoi du formulaire");
-			}
+	// 		if (!response.ok) {
+	// 		throw new Error("Erreur lors de l'envoi du formulaire");
+	// 		}
 
-			const result = await response.json();
-			console.log(result);
+	// 		const result = await response.json();
+	// 		console.log(result);
 			
-			//alert("Article enregistré avec succès !");
-		} catch (error) {
-			console.error("Erreur lors de la requête :", error);
-			//alert("Une erreur est survenue. Veuillez réessayer.");
-		}
-	};
+	// 		//alert("Article enregistré avec succès !");
+	// 	} catch (error) {
+	// 		console.error("Erreur lors de la requête :", error);
+	// 		//alert("Une erreur est survenue. Veuillez réessayer.");
+	// 	}
+	// };
   
 	return (
 		<Box
@@ -127,7 +128,7 @@ export default function Form( {page} ) {
 			{ page === 'sold' ?
 				<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 					<FormControl component="fieldset">
-						<FormLabel component="legend">Disponible sur :</FormLabel>
+						<FormLabel component="legend">Vendu sur :</FormLabel>
 						<Controller
 							name="platform"
 							control={control}
@@ -150,6 +151,13 @@ export default function Form( {page} ) {
 							)}
 						/>
                     </FormControl>
+					<label htmlFor="date" style={{ color: "#8D8D8D" }}>Vendu le: </label>
+					<input 
+						id='date' 
+						type='date' 
+						{...register("date")}
+ 						 style={{ height: "50px", padding: "0 5x" }}
+					/>
 				</Box>
 				: null
 			}
