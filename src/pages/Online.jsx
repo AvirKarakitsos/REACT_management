@@ -12,7 +12,7 @@ import {serverUrl} from '../utilities/constants.js'
 
 export default function Online() {
     const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
-    const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/online/categories`)
+    const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/categories/online`)
 	const { table: gridData, load: isLoadingGridData } = useFetch(`${serverUrl}/articles/online`)
 
     return (

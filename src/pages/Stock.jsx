@@ -13,7 +13,7 @@ import {serverUrl} from '../utilities/constants.js'
 
 export default function Stock() {
 	const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
-	const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/stock/categories`)
+	const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/categories/stock`)
 	const { table: gridData, load: isLoadingGridData } = useFetch(`${serverUrl}/articles/stock`)
 
     return (
