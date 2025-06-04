@@ -7,13 +7,12 @@ import Modal from './Modal'
 export default function Action({row}) {
     const [open, setOpen] = useState(false);
 	
-	const handleEdit = (user) => {
+	const handleEdit = () => {
 		setOpen(true)
-		console.log('Edit', user);
 	};
 
     const handleDelete = (input) => {
-        if(confirm("Supprimer l'article "+input.title+" ?")) console.log('Article supprimé, id: ', input.id);
+        if(confirm("Supprimer l'article: "+input.Titre+" ?")) console.log('Article supprimé, id: ', input.id);
     };
 
 	const handleClose = () => {
@@ -23,13 +22,13 @@ export default function Action({row}) {
     return(
         <>
             <IconButton >
-                <EditIcon onClick={() => handleEdit(row)}/>
+                <EditIcon onClick={handleEdit}/>
             </IconButton>
             <IconButton>
                 <DeleteIcon onClick={() => handleDelete(row)}/>
             </IconButton>
 
-            <Modal open={open} handleClose={handleClose}/>
+            <Modal open={open} handleClose={handleClose} data={row}/>
         </>
     )
 }

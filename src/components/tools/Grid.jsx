@@ -6,6 +6,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import CircularProgress from '@mui/material/CircularProgress';
 import Actions from '../Actions'
+import { useLocation } from 'react-router'
 
 // const handleState = (id, state, arrow) => {
 // 	switch(state) {
@@ -35,6 +36,7 @@ import Actions from '../Actions'
 // }; 
 
 export default function Grid({data, load}) {
+	let location = useLocation()
 
 	if(!load) {
 		const newColumns = [
@@ -49,12 +51,20 @@ export default function Grid({data, load}) {
 		];
 		return (
 			<div style={{ height: 400, width: '100%' }}>
-				<DataGrid
-					pageSize={5}
-					rowsPerPageOptions={[5]}
-					rows={data.rows}
-					columns={newColumns}
-				/>
+				{location.pathname === '/' 
+					? <DataGrid
+						pageSize={5}
+						rowsPerPageOptions={[5]}
+						rows={data.rows}
+						columns={data.columns}
+					/>
+					: <DataGrid
+						pageSize={5}
+						rowsPerPageOptions={[5]}
+						rows={data.rows}
+						columns={newColumns}
+					/>
+				}
 			</div>
 		)
 	} else return (<CircularProgress/>)

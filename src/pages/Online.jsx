@@ -51,7 +51,7 @@ export default function Online() {
             </Box>
 		
 			<CollapseComponent title="Ajouter un produit en ligne">
-				<Form page='online'/>
+				<Form page='online' mode='create'/>
 			</CollapseComponent>
 
             <Box elevation={1} sx={(theme) => theme.customComponents.section}>

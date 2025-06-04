@@ -94,3 +94,25 @@ export function grid(data) {
 
 	return {columns, rows: data.result}
 }
+
+export function whichCategory(name) {
+	let number = null
+	
+	switch(name) {
+		case "Livres": 
+			number = 1
+			break
+		case "Objets à collectionner":
+			number = 2
+			break
+		case "Vêtements": 
+			number = 3
+			break
+		case "Autres":
+			number = 4
+			break
+		default: break
+	}
+
+	return number
+}

@@ -34,7 +34,7 @@ export default function Analytic() {
             </Paper>
 
             <CollapseComponent title="Indiquer un article comme vendu">
-                <Form page='sold'/>
+                <Form page='sold' mode='create'/>
             </CollapseComponent>
             
 

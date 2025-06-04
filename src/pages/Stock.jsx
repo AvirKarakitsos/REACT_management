@@ -52,7 +52,7 @@ export default function Stock() {
 			</Box>
 		
 			<CollapseComponent title="Ajouter un produit en stock">
-				<Form page='stock'/>
+				<Form page='stock' mode='create'/>
 			</CollapseComponent>
 
 			<Box elevation={1} sx={(theme) => theme.customComponents.section}>

@@ -3,10 +3,13 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useForm, Controller } from "react-hook-form";
 //import { serverUrl } from '../../utilities/constants';
 
-export default function Form( {page} ) {
-	const { register, handleSubmit, control} = useForm(); //watch, formState: { errors } 
+export default function Form( {page, mode, defaultValues = {}} ) {
+	const { register, handleSubmit, control} = useForm({defaultValues}); //watch, formState: { errors } 
 	
-	const onSubmit = (data) => console.log(data)
+	const onSubmit = (data) => {
+		console.log(mode);
+		console.log(data);
+	} 
 	// const onSubmit = async (data) => {
 	// 	try {
 	// 		const response = await fetch(`${serverUrl}/api/articles`, {
@@ -45,23 +48,25 @@ export default function Form( {page} ) {
 			onSubmit={handleSubmit(onSubmit)}
 		>
 
-			<Box sx={ {width: '50%', p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
+			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 
-				<input type="hidden" value={page} {...register("state")} />
+				<input type="hidden" value={page==="analytic" ? "sold" : page} {...register("state")} />
 
 				<TextField
 					label="Titre"
 					{...register("title", { required: "Ce champ est requis" })}
 					fullWidth
 				/>
-
-				<TextField
-					label="Description"
-					{...register("description", { required: "Ce champ est requis" })}
-					multiline
-					rows={4}
-					fullWidth
-				/>
+				{ page === "stock" || page === "online"
+					? <TextField
+						label="Description"
+						{...register("description", { required: "Ce champ est requis" })}
+						multiline
+						rows={4}
+						fullWidth
+					/>
+					: null
+				}
 
 				<TextField
 					label="Prix (€)"
@@ -91,7 +96,7 @@ export default function Form( {page} ) {
 				/>
 
 				<Button type="submit" variant="contained">
-					Enregistrer
+					{mode === "edit" ? "Mettre à jour" : "Créer"}
 				</Button>
 			</Box>
 
@@ -125,7 +130,7 @@ export default function Form( {page} ) {
 			}
 
 
-			{ page === 'sold' ?
+			{ page === 'sold' || page === "analytic" ?
 				<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 					<FormControl component="fieldset">
 						<FormLabel component="legend">Vendu sur :</FormLabel>
