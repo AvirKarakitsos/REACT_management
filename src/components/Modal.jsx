@@ -18,7 +18,8 @@ export default function Modal({open, handleClose, data}) {
                             title:data.Titre,
                             description:data?.Description,
                             price: data.Prix,
-                            category: whichCategory(data.Categorie)
+                            category: whichCategory(data.Categorie),
+                            link: data?.link || null
                         }
                     }/>
             </DialogContent>

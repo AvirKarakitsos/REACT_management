@@ -10,14 +10,49 @@ import { useLocation } from 'react-router'
 export default function Action({row}) {
     let location = useLocation()
     const [open, setOpen] = useState(false);
-    const [state, setState] = useState({
-        website: null,
+    const [website, setWebsite] = useState({
+        data: null,
+        error: null,
+        loading: true,
+    });
+    const [links, setLinks] = useState({
+        data: null,
         error: null,
         loading: true,
     });
 	
-	const handleEdit = () => {
-		setOpen(true)
+	const handleEdit = (id) => {
+        if(location.pathname === "/online") {
+            setLinks({ data: null, error: null, loading: true });
+            
+            fetch(`http://localhost:4000/api/articles/online/${id}`)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error(`Erreur HTTP: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then((input) => {
+                let tabLinks = input.result.reduce((acc,cur)=> {
+                    acc.push(cur.link)
+                    return acc
+                },[]) 
+                let chainedLink = tabLinks.join(";")
+                let resLinks = {
+                    ...row,
+                    link: chainedLink
+                }
+
+                setLinks({ data: resLinks, error: null, loading: false });
+                setOpen(true)
+            })
+            .catch((err) => {
+                setLinks({ data: null, error: err.message, loading: false });
+            })
+        } else {
+            setOpen(true)
+        }
+
 	};
 
     const handleDelete = (input) => {
@@ -31,7 +66,7 @@ export default function Action({row}) {
     useEffect(() => {
         if(location.pathname === "/online") {
 
-            setState({ website: null, error: null, loading: true });
+            setWebsite({ data: null, error: null, loading: true });
     
             fetch(`http://localhost:4000/api/articles/online/${row.id}`)
             .then((res) => {
@@ -40,11 +75,11 @@ export default function Action({row}) {
                 }
                 return res.json();
             })
-            .then((data) => {
-                setState({ website: data, error: null, loading: false });
+            .then((input) => {
+                setWebsite({ data: input, error: null, loading: false });
             })
             .catch((err) => {
-                setState({ website: null, error: err.message, loading: false });
+                setWebsite({ data: null, error: err.message, loading: false });
             })
         }
 
@@ -54,15 +89,15 @@ export default function Action({row}) {
     return(
         <>
             <IconButton >
-                <EditIcon onClick={handleEdit}/>
+                <EditIcon onClick={() => handleEdit(row.id)}/>
             </IconButton>
             <IconButton>
                 <DeleteIcon onClick={() => handleDelete(row)}/>
             </IconButton>
 
-            {!state.loading 
+            {!website.loading 
                 ? <>
-                    {state.website.result.map(item =>(
+                    {website.data.result.map(item =>(
                         <IconButton key={item.id}>
                             <img src={`/logos${item.logoShort}`} style={ {height:"20px",width:"20px"}}/>
                         </IconButton>)
@@ -71,7 +106,8 @@ export default function Action({row}) {
                 : null
             }
 
-            <Modal open={open} handleClose={handleClose} data={row}/>
+            <Modal open={open} handleClose={handleClose} data={!links.loading ? links.data : row}/>
+            
         </>
     )
 }
