@@ -50,8 +50,6 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 
 			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 
-				<input type="hidden" value={page==="analytic" ? "sold" : page} {...register("state")} />
-
 				<TextField
 					label="Titre"
 					{...register("title", { required: "Ce champ est requis" })}
@@ -100,9 +98,9 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 				</Button>
 			</Box>
 
-			{ page === 'online' ?
-				<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
-					<TextField
+			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
+				{ page === 'online' ?
+					<><TextField
 						label="Indiquez les liens (séparer par des ;)"
 						{...register("link", { required: "Ce champ est requis" })}
 						fullWidth
@@ -124,15 +122,12 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 						<Typography variant="body2" sx={{ mt: 1 }}>
 						Fichier sélectionné
 						</Typography>
-					</Box>
-				</Box>
-				: null
-			}
+					</Box></>
+					: null
+				}
 
-
-			{ page === 'sold' || page === "analytic" ?
-				<Box sx={ {width: '50%',p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
-					<FormControl component="fieldset">
+				{ page === 'sold' || page === "analytic" ?
+					<><FormControl component="fieldset">
 						<FormLabel component="legend">Vendu sur :</FormLabel>
 						<Controller
 							name="platform"
@@ -156,16 +151,36 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 							)}
 						/>
                     </FormControl>
-					<label htmlFor="date" style={{ color: "#8D8D8D" }}>Vendu le: </label>
+					<label htmlFor="sold_at" style={{ color: "#8D8D8D" }}>Vendu le: </label>
 					<input 
-						id='date' 
+						id='sold_at' 
 						type='date' 
-						{...register("date")}
+						{...register("sold_at")}
  						 style={{ height: "50px", padding: "0 5x" }}
-					/>
-				</Box>
-				: null
-			}
+						  /></>
+						  : null
+						}
+			
+				{mode === "create" 
+					? <input type="hidden" value={page==="analytic" ? "sold" : page} {...register("state")} />
+					: <Controller
+						name="state"
+						control={control}
+						rules={{ required: "Ce champ est requis" }}
+						render={({ field }) => (
+							<Select
+								{...field}
+								fullWidth
+								label="Etat"
+							>
+								<MenuItem value="stock">En Stock</MenuItem>
+								<MenuItem value="online">En Ligne</MenuItem>
+								<MenuItem value="sold">Vendu</MenuItem>
+							</Select>
+					)}
+				/>
+				}
+			</Box>
 		</Box>
 	);
 };

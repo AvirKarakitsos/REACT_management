@@ -116,3 +116,25 @@ export function whichCategory(name) {
 
 	return number
 }
+
+export function whichWebsite(name) {
+	let number = null
+	
+	switch(name) {
+		case "Vinted": 
+			number = 1
+			break
+		case "Rakuten":
+			number = 2
+			break
+		case "Leboncoin": 
+			number = 3
+			break
+		case "Ebay":
+			number = 4
+			break
+		default: break
+	}
+
+	return number
+}
