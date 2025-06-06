@@ -15,16 +15,19 @@ export default function Modal({open, handleClose, data}) {
                     mode='edit' 
                     defaultValues={
                         {
+                            id:data.id,
                             title:data.Titre,
-                            description:data?.Description,
+                            description:data?.Description || null,
                             price: data.Prix,
                             category: whichCategory(data.Categorie),
                             state: data.Etat,
-                            link: data?.link || "",
-                            platform: whichWebsite(data?.Site) || "",
-                            sold_at: data?.Vendu || ""
+                            link: data?.link || null,
+                            platform: whichWebsite(data?.Site) || null,
+                            sold_at: data?.Vendu || null
                         }
-                    }/>
+                    }
+                    handleClose={handleClose}
+                    />
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>Annuler</Button>

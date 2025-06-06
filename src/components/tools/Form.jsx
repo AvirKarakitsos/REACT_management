@@ -1,39 +1,48 @@
 import {Box,Typography,TextField,MenuItem,Button, Select, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useForm, Controller } from "react-hook-form";
-//import { serverUrl } from '../../utilities/constants';
+import { serverUrl } from '../../utilities/constants';
 
-export default function Form( {page, mode, defaultValues = {}} ) {
+export default function Form( {page, mode, defaultValues = {}, handleClose = null} ) {
 	const { register, handleSubmit, control, watch} = useForm({defaultValues}); //formState: { errors }
 	const selectedState = watch("state"); 
 	
-	const onSubmit = (data) => {
-		console.log(mode);
-		console.log(data);
-	} 
-	// const onSubmit = async (data) => {
-	// 	try {
-	// 		const response = await fetch(`${serverUrl}/api/articles`, {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-Type": "application/json", // Indique qu'on envoie du JSON
-	// 		},
-	// 		body: JSON.stringify(data), // Convertit les données du formulaire en JSON
-	// 		});
+	const onSubmit = async (data) => {
 
-	// 		if (!response.ok) {
-	// 		throw new Error("Erreur lors de l'envoi du formulaire");
-	// 		}
+		try {
+			const obj = {
+				create:{
+					url: `${serverUrl}/api/articles`,
+					verbe:"POST",
+				},
+				edit:{
+					url: `${serverUrl}/api/articles/${data.id}`,
+					verbe:"PUT",
+				},
+			}
 
-	// 		const result = await response.json();
-	// 		console.log(result);
+			const response = await fetch(obj[mode].url, {
+				method: obj[mode].verbe,
+				headers: {
+					"Content-Type": "application/json", 
+				},
+				body: JSON.stringify(data), 
+			});
+
+			if (!response.ok) {
+				throw new Error("Erreur lors de l'envoi du formulaire");
+			}
+
+			const result = await response.json();
+			console.log(result);
+			handleClose()
 			
-	// 		//alert("Article enregistré avec succès !");
-	// 	} catch (error) {
-	// 		console.error("Erreur lors de la requête :", error);
-	// 		//alert("Une erreur est survenue. Veuillez réessayer.");
-	// 	}
-	// };
+			
+		} catch (error) {
+			console.error("Erreur lors de la requête :", error);
+			
+		}
+	};
   
 	return (
 		<Box
@@ -56,21 +65,19 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 					{...register("title", { required: "Ce champ est requis" })}
 					fullWidth
 				/>
-				{ page === "stock" || page === "online"
-					? <TextField
-						label="Description"
-						{...register("description", { required: "Ce champ est requis" })}
-						multiline
-						rows={4}
-						fullWidth
-					/>
-					: null
-				}
+				
+				<TextField
+					label="Description"
+					{...register("description", { required: "Ce champ est requis" })}
+					multiline
+					rows={4}
+					fullWidth
+				/>
 
 				<TextField
-					label="Prix (€)"
+					label="Prix (en centimes)"
 					{...register("price", { required: "Ce champ est requis" })}
-					type="number"
+					type='number'
 					fullWidth
 				/>
 
