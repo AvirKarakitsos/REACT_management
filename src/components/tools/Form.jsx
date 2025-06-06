@@ -4,7 +4,8 @@ import { useForm, Controller } from "react-hook-form";
 //import { serverUrl } from '../../utilities/constants';
 
 export default function Form( {page, mode, defaultValues = {}} ) {
-	const { register, handleSubmit, control} = useForm({defaultValues}); //watch, formState: { errors } 
+	const { register, handleSubmit, control, watch} = useForm({defaultValues}); //formState: { errors }
+	const selectedState = watch("state"); 
 	
 	const onSubmit = (data) => {
 		console.log(mode);
@@ -99,7 +100,28 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 			</Box>
 
 			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
-				{ page === 'online' ?
+
+				{mode === "edit"
+					? <Controller
+						name="state"
+						control={control}
+						rules={{ required: "Ce champ est requis" }}
+						render={({ field }) => (
+							<Select
+							{...field}
+							fullWidth
+							label="Etat"
+							>
+								<MenuItem value="stock">En Stock</MenuItem>
+								<MenuItem value="online">En Ligne</MenuItem>
+								<MenuItem value="sold">Vendu</MenuItem>
+							</Select>
+					)}
+					/>
+					: <input type="hidden" value={page==="analytic" ? "sold" : page} {...register("state")} />
+				}
+
+				{ selectedState === "online"  ?
 					<><TextField
 						label="Indiquez les liens (séparer par des ;)"
 						{...register("link", { required: "Ce champ est requis" })}
@@ -126,7 +148,7 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 					: null
 				}
 
-				{ page === 'sold' || page === "analytic" ?
+				{ selectedState === "sold" ?
 					<><FormControl component="fieldset">
 						<FormLabel component="legend">Vendu sur :</FormLabel>
 						<Controller
@@ -161,25 +183,7 @@ export default function Form( {page, mode, defaultValues = {}} ) {
 						  : null
 						}
 			
-				{mode === "create" 
-					? <input type="hidden" value={page==="analytic" ? "sold" : page} {...register("state")} />
-					: <Controller
-						name="state"
-						control={control}
-						rules={{ required: "Ce champ est requis" }}
-						render={({ field }) => (
-							<Select
-								{...field}
-								fullWidth
-								label="Etat"
-							>
-								<MenuItem value="stock">En Stock</MenuItem>
-								<MenuItem value="online">En Ligne</MenuItem>
-								<MenuItem value="sold">Vendu</MenuItem>
-							</Select>
-					)}
-				/>
-				}
+				
 			</Box>
 		</Box>
 	);
