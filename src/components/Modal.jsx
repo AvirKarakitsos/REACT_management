@@ -19,7 +19,7 @@ export default function Modal({open, handleClose, data}) {
                             title:data.Titre,
                             description:data?.Description || null,
                             price: data.Prix,
-                            category: whichCategory(data.Categorie),
+                            categoryId: whichCategory(data.Categorie),
                             state: data.Etat,
                             link: data?.link || null,
                             platform: whichWebsite(data?.Site) || null,

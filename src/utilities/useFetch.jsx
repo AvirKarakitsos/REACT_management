@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { grid } from './common.jsx'
+import { RefreshContext } from './context/RefreshContext.js'
 
 export function useFetch(url) {
     
     const [table, setTable] = useState({})
     const [load, setLoad] = useState(true)
+    const {refresh} = useContext(RefreshContext)
     
     useEffect(() => {
         const controller = new AbortController()
@@ -37,7 +39,7 @@ export function useFetch(url) {
         setLoad(true)
         fetchData()
         
-    }, [url])
+    }, [url,refresh])
 
     return { load, table }
 }

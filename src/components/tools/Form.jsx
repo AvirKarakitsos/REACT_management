@@ -2,21 +2,23 @@ import {Box,Typography,TextField,MenuItem,Button, Select, FormControl, FormLabel
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useForm, Controller } from "react-hook-form";
 import { serverUrl } from '../../utilities/constants';
+import { RefreshContext } from '../../utilities/context/RefreshContext.js';
+import { useContext } from 'react';
 
 export default function Form( {page, mode, defaultValues = {}, handleClose = null} ) {
 	const { register, handleSubmit, control, watch} = useForm({defaultValues}); //formState: { errors }
-	const selectedState = watch("state"); 
+	const selectedState = watch("state");
+	const {triggerRefresh} = useContext(RefreshContext)
 	
 	const onSubmit = async (data) => {
-
 		try {
 			const obj = {
 				create:{
-					url: `${serverUrl}/api/articles`,
+					url: `${serverUrl}/articles`,
 					verbe:"POST",
 				},
 				edit:{
-					url: `${serverUrl}/api/articles/${data.id}`,
+					url: `${serverUrl}/articles/${data.id}`,
 					verbe:"PUT",
 				},
 			}
@@ -35,7 +37,10 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 
 			const result = await response.json();
 			console.log(result);
-			handleClose()
+			
+			if(handleClose !== null) handleClose()
+
+			triggerRefresh()
 			
 			
 		} catch (error) {
@@ -83,7 +88,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 
 				{/* Options */}
 				<Controller
-					name="category"
+					name="categoryId"
 					control={control}
 					defaultValue=""
 					rules={{ required: "Ce champ est requis" }}
