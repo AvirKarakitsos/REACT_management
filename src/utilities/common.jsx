@@ -87,12 +87,47 @@ export function grid(data) {
 	for(let key in first) {
 		let element = {
 			field: key,
-			headerName: key
+			headerName: whichElement(key)
 		}
 		columns.push(element)
 	}
 
 	return {columns, rows: data.result}
+}
+
+function whichElement(input){
+	let headerName = null
+
+	switch(input) {
+		case "title":
+		headerName = "Titre"
+		break
+		case "description":
+		headerName = "Description"
+		break
+		case "price":
+		headerName = "Prix"
+		break
+		case "categoryId":
+		headerName = "Catégorie"
+		break
+		case "state":
+		headerName = "Etat"
+		break
+		case "photos":
+		headerName = "# Photos"
+		break
+		case "platform":
+		headerName = "Vendu sur"
+		break
+		case "sold_at":
+		headerName = "Vendu le"
+		break
+		default :
+		headerName = input
+		break
+	}
+	return headerName
 }
 
 export function whichCategory(name) {

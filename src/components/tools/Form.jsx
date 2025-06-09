@@ -141,24 +141,12 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 						{...register("link", { required: "Ce champ est requis" })}
 						fullWidth
 					/>
-
-					<Box sx={{ mt: 3 }}>
-						<input
-							accept="image/*"
-							style={{ display: 'none' }}
-							id="upload-image"
-							type="file"
-						/>
-						<label htmlFor="upload-image">
-							<Button variant="contained" component="span" startIcon={<UploadFileIcon />}>
-							Ajouter une image
-							</Button>
-						</label>
-
-						<Typography variant="body2" sx={{ mt: 1 }}>
-						Fichier sélectionné
-						</Typography>
-					</Box></>
+					<TextField
+						label="Nombre de photos de l'article"
+						type='number'
+						{...register("photos", { required: "Ce champ est requis" })}
+						fullWidth
+					/></>
 					: null
 				}
 

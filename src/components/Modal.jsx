@@ -5,6 +5,11 @@ import { useLocation } from 'react-router'
 
 export default function Modal({open, handleClose, data}) {
     let location = useLocation()
+    let defautlValues = {
+        ...data,
+        platform: whichWebsite(data.platform),
+        categoryId: whichCategory(data.categoryId)
+    }
 
     return(
         <Dialog open={open} onClose={handleClose}>
@@ -13,19 +18,7 @@ export default function Modal({open, handleClose, data}) {
                 <Form 
                     page={location.pathname.split('/')[1]}
                     mode='edit' 
-                    defaultValues={
-                        {
-                            id:data.id,
-                            title:data.Titre,
-                            description:data?.Description || null,
-                            price: data.Prix,
-                            categoryId: whichCategory(data.Categorie),
-                            state: data.Etat,
-                            link: data?.link || null,
-                            platform: whichWebsite(data?.Site) || null,
-                            sold_at: data?.Vendu || null
-                        }
-                    }
+                    defaultValues={defautlValues}
                     handleClose={handleClose}
                     />
             </DialogContent>
