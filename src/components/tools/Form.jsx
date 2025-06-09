@@ -6,7 +6,7 @@ import { RefreshContext } from '../../utilities/context/RefreshContext.js';
 import { useContext } from 'react';
 
 export default function Form( {page, mode, defaultValues = {}, handleClose = null} ) {
-	const { register, handleSubmit, control, watch} = useForm({defaultValues}); //formState: { errors }
+	const { register, handleSubmit, control, watch, reset} = useForm({defaultValues}); //formState: { errors }
 	const selectedState = watch("state");
 	const {triggerRefresh} = useContext(RefreshContext)
 	
@@ -39,6 +39,8 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 			console.log(result);
 			
 			if(handleClose !== null) handleClose()
+			
+			if(mode === "create") reset()
 
 			triggerRefresh()
 			

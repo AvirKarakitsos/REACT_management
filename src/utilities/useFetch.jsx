@@ -12,7 +12,6 @@ export function useFetch(url) {
         const controller = new AbortController()
         
         if (!url) return
-
         
         async function fetchData() {
             let newUrl = new URL(url)

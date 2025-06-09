@@ -33,11 +33,9 @@ export default function Analytic() {
 
             </Paper>
 
-            <CollapseComponent title="Indiquer un article comme vendu">
+            <CollapseComponent title="Ajouter un article vendu">
                 <Form page='sold' mode='create'/>
             </CollapseComponent>
-            
-
 
             <Box elevation={1} sx={(theme) => theme.customComponents.section}>
 				<Typography variant="h2">

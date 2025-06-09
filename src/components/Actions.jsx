@@ -1,15 +1,18 @@
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {IconButton} from '@mui/material'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Modal from './Modal'
 import { useLocation } from 'react-router'
+import { serverUrl } from '../utilities/constants';
+import { RefreshContext } from '../utilities/context/RefreshContext';
 
 
 
 export default function Action({row}) {
     let location = useLocation()
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
+    const {triggerRefresh} = useContext(RefreshContext)
     const [website, setWebsite] = useState({
         data: null,
         error: null,
@@ -25,7 +28,7 @@ export default function Action({row}) {
         if(location.pathname === "/online") {
             setLinks({ data: null, error: null, loading: true });
             
-            fetch(`http://localhost:4000/api/articles/online/${id}`)
+            fetch(`${serverUrl}/articles/online/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(`Erreur HTTP: ${res.status}`);
@@ -56,7 +59,19 @@ export default function Action({row}) {
 	};
 
     const handleDelete = (input) => {
-        if(confirm("Supprimer l'article: "+input.Titre+" ?")) console.log('Article supprimé, id: ', input.id);
+        if(confirm("Supprimer l'article: "+input.Titre+" ?")) {
+            fetch(`${serverUrl}/articles/${input.id}`,{method: "DELETE"})
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error(`Erreur HTTP: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then((input) => {
+                console.log(input)
+                triggerRefresh()
+            })
+        } 
     };
 
 	const handleClose = () => {
