@@ -1,17 +1,24 @@
-import {Box,Typography,TextField,MenuItem,Button, Select, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
+import {Box,TextField,MenuItem,Button, Select, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import { useForm, Controller } from "react-hook-form";
 import { serverUrl } from '../../utilities/constants';
 import { RefreshContext } from '../../utilities/context/RefreshContext.js';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import Notification from './Notification.jsx'
+
 
 export default function Form( {page, mode, defaultValues = {}, handleClose = null} ) {
 	const { register, handleSubmit, control, watch, reset} = useForm({defaultValues}); //formState: { errors }
 	const selectedState = watch("state");
 	const {triggerRefresh} = useContext(RefreshContext)
-	
+	const [snackbar, setSnackbar] = useState({
+		isOpen: false,
+		status: null,
+		message: null
+	})
+
 	const onSubmit = async (data) => {
 		try {
+			console.log(data)
 			const obj = {
 				create:{
 					url: `${serverUrl}/articles`,
@@ -32,17 +39,29 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 			});
 
 			if (!response.ok) {
-				throw new Error("Erreur lors de l'envoi du formulaire");
+				setSnackbar({
+					isOpen: true, 
+					status: "error", 
+					message:"Erreur lors de l'envoi du formulaire"
+				})
 			}
 
 			const result = await response.json();
 			console.log(result);
-			
-			if(handleClose !== null) handleClose()
-			
-			if(mode === "create") reset()
 
-			triggerRefresh()
+			setSnackbar({
+				isOpen: true, 
+				status: "success", 
+				message: result.message
+			})
+
+			reset()
+				
+			
+			setTimeout(() => {
+				if(handleClose !== null) handleClose()
+				triggerRefresh()
+			}, "3000");
 			
 			
 		} catch (error) {
@@ -52,6 +71,10 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 	};
   
 	return (
+		<>
+		
+		<Notification snackbar={snackbar} handleSnackbar={setSnackbar}/>
+		
 		<Box
 			component="form"
 			sx={{
@@ -64,6 +87,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 			}}
 			onSubmit={handleSubmit(onSubmit)}
 		>
+
 
 			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
 
@@ -107,10 +131,13 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 						</Select>
 					)}
 				/>
-
-				<Button type="submit" variant="contained">
-					{mode === "edit" ? "Mettre à jour" : "Créer"}
-				</Button>
+				{
+					!snackbar.isOpen
+						? <Button type="submit" variant="contained">
+								{mode === "edit" ? "Mettre à jour" : "Créer"}
+							</Button>
+						: null
+					}
 			</Box>
 
 			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
@@ -188,6 +215,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 				
 			</Box>
 		</Box>
+		</>
 	);
 };
 
