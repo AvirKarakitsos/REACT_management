@@ -6,6 +6,7 @@ import Grid from '../components/tools/Grid'
 import MiniCard from '../components/tools/MiniCard'
 import CercleContainer from '../components/tools/CercleContainer'
 import Inventory2Icon from '@mui/icons-material/Inventory2';
+import EuroIcon from '@mui/icons-material/Euro';
 
 import { useFetch } from '../utilities/useFetch.jsx';
 import {serverUrl} from '../utilities/constants.js'
@@ -15,6 +16,7 @@ export default function Stock() {
 	const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
 	const { table: pieData, load: isLoadingPieData } = useFetch(`${serverUrl}/articles/categories/stock`)
 	const { table: gridData, load: isLoadingGridData } = useFetch(`${serverUrl}/articles/stock`)
+	const { table: value, load: isLoadingValue } = useFetch(`${serverUrl}/articles/value/stock`)
 
     return (
         <Box
@@ -32,19 +34,34 @@ export default function Stock() {
 				sx={{
 				display:'flex',
 				justifyContent: 'space-evenly',
-				alignItems:'center',
+				alignItems:'flex-start',
 				mb: 3,
 				p: 4
 				}}
 			>
-				<MiniCard title="Produits en stock" number={figures.numberStock} load={isLoadingFigures}>
-					<CercleContainer>
-						<Inventory2Icon fontSize="small" />
-					</CercleContainer>
-				</MiniCard>
+				<Box
+				sx={{
+					display:'flex',
+					flexDirection: 'column',
+					rowGap: 5
+					}}
+				>
+					
+					<MiniCard title="Produits en stock" number={figures.numberStock} load={isLoadingFigures}>
+						<CercleContainer>
+							<Inventory2Icon fontSize="small" />
+						</CercleContainer>
+					</MiniCard>
+
+					<MiniCard title="Valeur totale" number={`${value.result/100}€`} load={isLoadingValue}>
+						<CercleContainer>
+							<EuroIcon fontSize="small" />
+						</CercleContainer>
+					</MiniCard>
+				</Box>
 
 				<Paper elevation={2} sx={(theme) => ({
-					...theme.customComponents.section
+					...theme.customComponents.pie
 				})}>					
 					<Pie table={pieData.result} load={isLoadingPieData}/>
 				</Paper>
@@ -61,7 +78,6 @@ export default function Stock() {
 				</Typography>
 				<Grid data={gridData} load={isLoadingGridData} />
 			</Box>
-
 
         </Box>
     );

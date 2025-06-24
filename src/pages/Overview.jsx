@@ -90,7 +90,7 @@ export default function Overview() {
 			
 			<Box elevation={1} sx={(theme) => theme.customComponents.section}>
 				<Typography variant="h2">
-					Les derniers articles mis en ligne
+					Les derniers articles mis à jour
 				</Typography>
 				<Grid page="overview" data={dataGrid} load={isLoadingDataGrid}/>
 			</Box>

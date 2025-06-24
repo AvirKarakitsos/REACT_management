@@ -33,10 +33,15 @@ const theme = createTheme({
 
 	customComponents: {
 		section: {
-		p: 4,
-		m: 4,
-		borderRadius: 3,
-		backgroundColor: '#fff',
+			p: 4,
+			m: 4,
+			borderRadius: 3,
+			backgroundColor: '#fff',
+    	},
+		pie: {
+			p: 4,
+			borderRadius: 3,
+			backgroundColor: '#fff',
     	},
 	}
 });
