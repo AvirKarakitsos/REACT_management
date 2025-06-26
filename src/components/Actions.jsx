@@ -59,7 +59,7 @@ export default function Action({row}) {
 	};
 
     const handleDelete = (input) => {
-        if(confirm("Supprimer l'article: "+input.Titre+" ?")) {
+        if(confirm("Supprimer l'article: "+input.title+" ?")) {
             fetch(`${serverUrl}/articles/${input.id}`,{method: "DELETE"})
             .then((res) => {
                 if (!res.ok) {
@@ -114,7 +114,9 @@ export default function Action({row}) {
                 ? <>
                     {website.data.result.map(item =>(
                         <IconButton key={item.id}>
+                        <a href={item.link} target="_blank" rel="noopener noreferrer">
                             <img src={`/logos${item.logoShort}`} style={ {height:"20px",width:"20px"}}/>
+                        </a>
                         </IconButton>)
                     )}
                 </>
