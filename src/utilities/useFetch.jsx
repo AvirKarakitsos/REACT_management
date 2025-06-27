@@ -19,10 +19,11 @@ export function useFetch(url) {
                 const response = await fetch(url, {signal:controller.signal})
                 const result = await response.json()
 
-                if(newUrl.pathname === `/api/articles/all/recent` || newUrl.pathname === `/api/articles/stock` || newUrl.pathname === `/api/articles/sold` || newUrl.pathname === `/api/articles/online`) {
+                if(newUrl.pathname === `/api/articles/all` || newUrl.pathname === `/api/articles/stock` || newUrl.pathname === `/api/articles/sold` || newUrl.pathname === `/api/articles/online`) {
+              
                     let finalResult=grid(result)
                     setTable(finalResult)
-
+                    
                 } else {
                     setTable(result)
                 }

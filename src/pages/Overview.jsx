@@ -16,7 +16,7 @@ import {serverUrl} from '../utilities/constants.js'
 export default function Overview() {
 	const { table: figures, load: isLoadingFigures } = useFetch(`${serverUrl}/articles/all/figures`)
 	const { table: barData, load: isLoadingBarData } = useFetch(`${serverUrl}/articles/sold/recent`)
-	const { table: dataGrid, load: isLoadingDataGrid } = useFetch(`${serverUrl}/articles/all/recent`)
+	const { table: dataGrid, load: isLoadingDataGrid } = useFetch(`${serverUrl}/articles/all`)
 	return (
 		<Box
 			component="main"
@@ -92,7 +92,7 @@ export default function Overview() {
 				<Typography variant="h2">
 					Les derniers articles mis à jour
 				</Typography>
-				<Grid page="overview" data={dataGrid} load={isLoadingDataGrid}/>
+				<Grid data={dataGrid} load={isLoadingDataGrid}/>
 			</Box>
 		</Box>
 	);
