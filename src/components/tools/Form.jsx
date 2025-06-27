@@ -108,12 +108,14 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 					fullWidth
 				/>
 
-				<TextField
-					label="Prix (en centimes)"
-					{...register("price", { required: "Ce champ est requis" })}
-					type='number'
-					fullWidth
-				/>
+				<input
+					id="price"
+					type="number"
+					step="0.01"
+					min="0"
+					placeholder="Prix"
+					{...register('price',{ required: "Ce champ est requis" })}
+					className='inputPrice'/>
 
 				{/* Options */}
 				<Controller
