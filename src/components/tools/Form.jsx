@@ -10,6 +10,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 	const { register, handleSubmit, control, watch, reset} = useForm({defaultValues}); //formState: { errors }
 	const selectedState = watch("state");
 	const {triggerRefresh} = useContext(RefreshContext)
+	const [valid, setValid] = useState(false)
 	const [snackbar, setSnackbar] = useState({
 		isOpen: false,
 		status: null,
@@ -18,7 +19,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 
 	const onSubmit = async (data) => {
 		try {
-
+			setValid(true)
 			const obj = {
 				create:{
 					url: `${serverUrl}/articles`,
@@ -35,7 +36,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 				headers: {
 					"Content-Type": "application/json", 
 				},
-				body: JSON.stringify(data), 
+				body: JSON.stringify({...data, price: data.price*100}), 
 			});
 
 			if (!response.ok) {
@@ -44,6 +45,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 					status: "error", 
 					message:"Erreur lors de l'envoi du formulaire"
 				})
+				setValid(false)
 			}
 
 			const result = await response.json();
@@ -55,7 +57,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 			})
 
 			reset()
-				
+			setValid(false)
 			
 			setTimeout(() => {
 				if(handleClose !== null) handleClose()
@@ -137,7 +139,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 					)}
 				/>
 				{
-					!snackbar.isOpen
+					!valid
 						? <Button type="submit" variant="contained">
 								{mode === "edit" ? "Mettre à jour" : "Créer"}
 							</Button>

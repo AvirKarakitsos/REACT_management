@@ -92,7 +92,9 @@ export function grid(data) {
 		columns.push(element)
 	}
 
-	return {columns, rows: data.result}
+	const rows = data.result.map(item => ({...item, price: item.price/100}))
+
+	return {columns, rows}
 }
 
 function whichElement(input){
@@ -106,7 +108,7 @@ function whichElement(input){
 		headerName = "Description"
 		break
 		case "price":
-		headerName = "Prix"
+		headerName = "Prix (en €)"
 		break
 		case "categoryId":
 		headerName = "Catégorie"
