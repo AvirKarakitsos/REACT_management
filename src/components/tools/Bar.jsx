@@ -2,7 +2,6 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Bar( {table, load} ) {
-    //scaleType: 'band',
 
     if(!load) return(
         <BarChart

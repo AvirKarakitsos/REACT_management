@@ -18,7 +18,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 
 	const onSubmit = async (data) => {
 		try {
-			console.log(data)
+
 			const obj = {
 				create:{
 					url: `${serverUrl}/articles`,
@@ -47,7 +47,6 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 			}
 
 			const result = await response.json();
-			console.log(result);
 
 			setSnackbar({
 				isOpen: true, 
@@ -66,7 +65,11 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 			
 		} catch (error) {
 			console.error("Erreur lors de la requête :", error);
-			
+			setSnackbar({
+				isOpen: true, 
+				status: "error", 
+				message:"Erreur lors de l'envoi du formulaire"
+			})
 		}
 	};
   

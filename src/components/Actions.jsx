@@ -6,7 +6,7 @@ import Modal from './Modal'
 import { useLocation } from 'react-router'
 import { serverUrl } from '../utilities/constants';
 import { RefreshContext } from '../utilities/context/RefreshContext';
-
+import Notification from './tools/Notification'
 
 
 export default function Action({row}) {
@@ -23,6 +23,11 @@ export default function Action({row}) {
         error: null,
         loading: true,
     });
+    const [snackbar, setSnackbar] = useState({
+        isOpen: false,
+        status: null,
+        message: null
+    })
 	
 	const handleEdit = (id) => {
         if(location.pathname === "/online") {
@@ -63,13 +68,24 @@ export default function Action({row}) {
             fetch(`${serverUrl}/articles/${input.id}`,{method: "DELETE"})
             .then((res) => {
                 if (!res.ok) {
-                    throw new Error(`Erreur HTTP: ${res.status}`);
+                    setSnackbar({
+                        isOpen: true, 
+                        status: "error", 
+                        message:"Erreur lors de la suppression"
+                    })
                 }
                 return res.json();
             })
             .then((input) => {
-                console.log(input)
-                triggerRefresh()
+                setSnackbar({
+                    isOpen: true, 
+                    status: "success", 
+                    message: input.message
+                })
+                
+                setTimeout(() => {
+                    triggerRefresh()
+                }, "3000");
             })
         } 
     };
@@ -103,6 +119,8 @@ export default function Action({row}) {
 
     return(
         <>
+            <Notification snackbar={snackbar} handleSnackbar={setSnackbar}/>
+            
             <IconButton >
                 <EditIcon onClick={() => handleEdit(row.id)}/>
             </IconButton>

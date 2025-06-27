@@ -17,8 +17,8 @@ export default function Analytic() {
             sx={{
                 flexGrow: 1,
                 p: 4,
-                ml: '240px', // largeur du Drawer
-                mt: '64px', // hauteur du Header
+                ml: '240px',
+                mt: '64px',
                 backgroundColor: 'background.paper'
             }}
         >
