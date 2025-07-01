@@ -14,7 +14,7 @@ export default function Grid({data, load}) {
 				headerName: 'Actions',
 				width: 400,
 				sortable: false,
-				renderCell: (params) => <Actions row={params.row}/>
+				renderCell: (params) => <Actions row={params.row} websites={data.websites.filter(item => item.id === params.row.id)} />
 			}
 		];
 		return (

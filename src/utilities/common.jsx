@@ -92,9 +92,26 @@ export function grid(data) {
 		columns.push(element)
 	}
 
-	const rows = data.result.map(item => ({...item, price: item.price/100}))
+	let tableRows = []
+	let tableWebsites = []
 
-	return {columns, rows}
+	if(first.state === "online") {
+		data.result.map(item => {
+			const {id, websites, price, ...rowsObj} = item
+			let element = {}
+			for(let key in rowsObj) {
+				element[key] = rowsObj[key]
+			}
+			element.id = id
+			element.price = price/100
+			tableRows.push(element)
+			tableWebsites.push({id, websites})
+		})
+	} else {
+		tableRows = data.result.map(item => ({...item, price: item.price/100}))
+	}
+	
+	return {columns, rows: tableRows, websites: tableWebsites}
 }
 
 function whichElement(input){
