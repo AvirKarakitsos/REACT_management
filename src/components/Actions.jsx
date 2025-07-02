@@ -10,7 +10,6 @@ import Notification from './tools/Notification'
 
 
 export default function Action({row, websites}) {
-    console.log(websites)
     //let location = useLocation()
     const [open, setOpen] = useState(false)
     const {triggerRefresh} = useContext(RefreshContext)
@@ -19,28 +18,25 @@ export default function Action({row, websites}) {
     //     error: null,
     //     loading: true,
     // });
-    // const [links, setLinks] = useState({
-    //     data: null,
-    //     error: null,
-    //     loading: true,
-    // });
+    const [data, setData] = useState({...row})
+
     const [snackbar, setSnackbar] = useState({
         isOpen: false,
         status: null,
         message: null
     })
-	let result = {...row}
 
+    
 	const handleEdit = () => {
         if(row.state === "online") {
-            let tabLinks = websites.reduce((acc,cur)=> {
+            let tabLinks = websites[0].websites.reduce((acc,cur)=> {
                     acc.push(cur.link)
                     return acc
                 },[]) 
-                let chainedLink = tabLinks.join(";")
-                result.link = chainedLink
-                
-                setOpen(true)
+            let chainedLink = tabLinks.join(";")
+            setData(prev =>({...prev, link: chainedLink}))
+           
+            setOpen(true)
             // setLinks({ data: null, error: null, loading: true });
             
             // fetch(`${serverUrl}/articles/online/${id}`)
@@ -151,7 +147,7 @@ export default function Action({row, websites}) {
                 : null
             }
 
-            <Modal open={open} handleClose={handleClose} data={result}/>
+            <Modal open={open} handleClose={handleClose} data={data}/>
             
         </>
     )
