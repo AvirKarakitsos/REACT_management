@@ -3,21 +3,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {IconButton} from '@mui/material'
 import { useContext, useState } from 'react';
 import Modal from './Modal'
-// import { useLocation } from 'react-router'
 import { serverUrl } from '../utilities/constants';
 import { RefreshContext } from '../utilities/context/RefreshContext';
 import Notification from './tools/Notification'
 
 
 export default function Action({row, websites}) {
-    //let location = useLocation()
     const [open, setOpen] = useState(false)
     const {triggerRefresh} = useContext(RefreshContext)
-    // const [website, setWebsite] = useState({
-    //     data: null,
-    //     error: null,
-    //     loading: true,
-    // });
     const [data, setData] = useState({...row})
 
     const [snackbar, setSnackbar] = useState({
@@ -25,7 +18,6 @@ export default function Action({row, websites}) {
         status: null,
         message: null
     })
-
     
 	const handleEdit = () => {
         if(row.state === "online") {
@@ -34,35 +26,9 @@ export default function Action({row, websites}) {
                     return acc
                 },[]) 
             let chainedLink = tabLinks.join(";")
-            setData(prev =>({...prev, link: chainedLink}))
-           
-            setOpen(true)
-            // setLinks({ data: null, error: null, loading: true });
-            
-            // fetch(`${serverUrl}/articles/online/${id}`)
-            // .then((res) => {
-            //     if (!res.ok) {
-            //         throw new Error(`Erreur HTTP: ${res.status}`);
-            //     }
-            //     return res.json();
-            // })
-            // .then((input) => {
-            //     let tabLinks = input.result.reduce((acc,cur)=> {
-            //         acc.push(cur.link)
-            //         return acc
-            //     },[]) 
-            //     let chainedLink = tabLinks.join(";")
-            //     let resLinks = {
-            //         ...row,
-            //         link: chainedLink
-            //     }
 
-            //     setLinks({ data: resLinks, error: null, loading: false });
-            //     setOpen(true)
-            // })
-            // .catch((err) => {
-            //     setLinks({ data: null, error: err.message, loading: false });
-            // })
+            setData(prev =>({...prev, link: chainedLink}))
+            setOpen(true)
         } else {
             setOpen(true)
         }
@@ -99,29 +65,6 @@ export default function Action({row, websites}) {
 	const handleClose = () => {
 		setOpen(false);
 	};
-
-    // useEffect(() => {
-    //     if(location.pathname === "/online") {
-
-    //         setWebsite({ data: null, error: null, loading: true });
-    
-    //         fetch(`http://localhost:4000/api/articles/online/${row.id}`)
-    //         .then((res) => {
-    //             if (!res.ok) {
-    //             throw new Error(`Erreur HTTP: ${res.status}`);
-    //             }
-    //             return res.json();
-    //         })
-    //         .then((input) => {
-    //             setWebsite({ data: input, error: null, loading: false });
-    //         })
-    //         .catch((err) => {
-    //             setWebsite({ data: null, error: err.message, loading: false });
-    //         })
-    //     }
-
-    // },[location.pathname,row.id])
-
 
     return(
         <>
