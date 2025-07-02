@@ -84,7 +84,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 			component="form"
 			sx={{
 				display: 'flex',
-				gap: 2,
+				gap: 4,
 				p: 3,
 				border: '1px solid #ccc',
 				borderRadius: 2,
@@ -94,7 +94,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 		>
 
 
-			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
+			<Box sx={ {display: 'flex', flexDirection: 'column', gap: 4} }>
 
 				<TextField
 					label="Titre"
@@ -147,7 +147,7 @@ export default function Form( {page, mode, defaultValues = {}, handleClose = nul
 					}
 			</Box>
 
-			<Box sx={ {p: 3, display: 'flex', flexDirection: 'column', gap: 2} }>
+			<Box sx={ {display: 'flex', flexDirection: 'column', gap: 2} }>
 
 				{mode === "edit"
 					? <Controller
