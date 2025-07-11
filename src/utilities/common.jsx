@@ -85,11 +85,13 @@ export function grid(data) {
 	const first = data.result[0]
 	
 	for(let key in first) {
-		let element = {
-			field: key,
-			headerName: whichElement(key)
+		if(key !== "websites"){
+			let element = {
+				field: key,
+				headerName: whichElement(key)
+			}
+			columns.push(element)
 		}
-		columns.push(element)
 	}
 
 	let tableRows = []
